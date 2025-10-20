@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.tecsup.candidatoinfo"
-    compileSdk = 34
+    compileSdk = 36   // ✅ actualizado
 
     defaultConfig {
         applicationId = "com.tecsup.candidatoinfo"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36  // ✅ actualizado
         versionCode = 1
         versionName = "1.0"
 
@@ -40,6 +40,16 @@ android {
     buildFeatures {
         compose = true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3" // ✅ versión estable para Compose 1.9.0
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
@@ -57,13 +67,13 @@ dependencies {
     implementation(libs.androidx.material3)
 
     // --- Navigation Compose ---
-    implementation("androidx.navigation:navigation-compose:2.8.0")
+    implementation("androidx.navigation:navigation-compose:2.8.3")
 
     // --- ViewModel Compose ---
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
 
-    // --- Coil (carga de imágenes) ---
-    implementation("io.coil-kt:coil-compose:2.5.0")
+    // --- Coil (Carga de imágenes) ---
+    implementation("io.coil-kt:coil-compose:2.7.0")
 
     // --- Testing ---
     testImplementation(libs.junit)
