@@ -2,20 +2,34 @@
 .gradle/
 build/
 **/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration
+local.properties
+.idea/
 
 # Android Studio
-.idea/
-.local.properties
-.DS_Store
-
-# Kotlin / Jetpack
 *.iml
-*.class
-*.dex
-*.apk
-*.aab
+*.hprof
+*.log
+*.xml
+*.ipr
+*.iws
 
-# Misc
+# Generated files
 captures/
+.externalNativeBuild/
+.cxx/
 outputs/
-app/release/
+intermediates/
+navigation.json
+
+# Kotlin
+*.class
+*.kotlin_module
+
+# Others
+.DS_Store
+*.apk
+*.aar
+*.dex
