@@ -9,6 +9,6 @@ data class Candidato(
     val edad: Int,
     val lugarNacimiento: String,
     val profesion: String,
-    val numeroDenuncias: Int = 0,
-    val numeroProyectos: Int = 0
+    val numeroDenuncias: Int,
+    val numeroProyectos: Int
 )

@@ -29,10 +29,12 @@ fun NavigationHost() {
             )
         }
 
-        composable("denuncia/{candidatoId}") { backStackEntry ->
+        composable("denuncia/{candidatoId}/{denunciaId}") { backStackEntry ->
             val candidatoId = backStackEntry.arguments?.getString("candidatoId") ?: ""
+            val denunciaId = backStackEntry.arguments?.getString("denunciaId") ?: ""
             DenunciaDetailScreen(
                 candidatoId = candidatoId,
+                denunciaId = denunciaId,
                 navController = navController
             )
         }

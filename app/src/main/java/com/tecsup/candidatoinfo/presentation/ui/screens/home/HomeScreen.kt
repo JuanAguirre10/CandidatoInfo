@@ -15,40 +15,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.tecsup.candidatoinfo.data.datasource.MockDataSource
-import com.tecsup.candidatoinfo.presentation.ui.components.CandidatoCard
+import com.tecsup.candidatoinfo.core.util.UiState
+import com.tecsup.candidatoinfo.presentation.ui.components.*
 import com.tecsup.candidatoinfo.presentation.ui.theme.*
+import com.tecsup.candidatoinfo.presentation.viewmodel.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navController: NavController,
+    viewModel: HomeViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
-    var searchQuery by remember { mutableStateOf("") }
-    var selectedFilter by remember { mutableStateOf("Todos") }
-
-    val candidatos = MockDataSource.candidatos
-
-    // Filtrar candidatos
-    val candidatosFiltrados = remember(selectedFilter, searchQuery) {
-        var filtered = when (selectedFilter) {
-            "Congreso" -> candidatos.filter { it.cargo.contains("Congresista", ignoreCase = true) }
-            "Presidencia" -> candidatos.filter { it.cargo.contains("Presidente", ignoreCase = true) }
-            else -> candidatos
-        }
-
-        // Filtrar por búsqueda
-        if (searchQuery.isNotBlank()) {
-            filtered = filtered.filter {
-                it.nombreCompleto.contains(searchQuery, ignoreCase = true) ||
-                        it.partidoPolitico.contains(searchQuery, ignoreCase = true)
-            }
-        }
-
-        filtered
-    }
+    val uiState by viewModel.uiState.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val selectedFilter by viewModel.selectedFilter.collectAsState()
 
     Scaffold(
         topBar = {
@@ -78,16 +61,14 @@ fun HomeScreen(
                 .background(Gray50)
                 .padding(paddingValues)
         ) {
-            // Barra de búsqueda
             SearchBarComponent(
                 query = searchQuery,
-                onQueryChange = { searchQuery = it },
+                onQueryChange = { viewModel.updateSearchQuery(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
             )
 
-            // Chips de filtro
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -98,14 +79,18 @@ fun HomeScreen(
                     label = "Congreso",
                     selected = selectedFilter == "Congreso",
                     onClick = {
-                        selectedFilter = if (selectedFilter == "Congreso") "Todos" else "Congreso"
+                        viewModel.updateFilter(
+                            if (selectedFilter == "Congreso") "Todos" else "Congreso"
+                        )
                     }
                 )
                 FilterChipCustom(
                     label = "Presidencia",
                     selected = selectedFilter == "Presidencia",
                     onClick = {
-                        selectedFilter = if (selectedFilter == "Presidencia") "Todos" else "Presidencia"
+                        viewModel.updateFilter(
+                            if (selectedFilter == "Presidencia") "Todos" else "Presidencia"
+                        )
                     }
                 )
                 FilterChipCustom(
@@ -117,36 +102,48 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Lista de candidatos
-            LazyColumn(
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(candidatosFiltrados) { candidato ->
-                    CandidatoCard(
-                        candidato = candidato,
-                        onClick = {
-                            navController.navigate("detail/${candidato.id}")
-                        }
-                    )
+            when (uiState) {
+                is UiState.Idle -> {
                 }
 
-                // Mensaje si no hay resultados
-                if (candidatosFiltrados.isEmpty()) {
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(32.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = "No se encontraron candidatos",
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = TextSecondary
+                is UiState.Loading -> {
+                    LoadingIndicator(message = "Cargando candidatos...")
+                }
+
+                is UiState.Success -> {
+                    val candidatos = (uiState as UiState.Success).data
+
+                    LazyColumn(
+                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        items(candidatos) { candidato ->
+                            CandidatoCard(
+                                candidato = candidato,
+                                onClick = {
+                                    navController.navigate("detail/${candidato.id}")
+                                }
                             )
                         }
                     }
+                }
+
+                is UiState.Empty -> {
+                    EmptyState(
+                        icon = "🔍",
+                        title = "No hay resultados",
+                        message = "No se encontraron candidatos con los filtros aplicados",
+                        actionLabel = "Limpiar filtros",
+                        onAction = { viewModel.resetFilters() }
+                    )
+                }
+
+                is UiState.Error -> {
+                    val errorMessage = (uiState as UiState.Error).message
+                    ErrorState(
+                        message = errorMessage,
+                        onRetry = { viewModel.loadCandidatos() }
+                    )
                 }
             }
         }
@@ -180,7 +177,7 @@ fun SearchBarComponent(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
         ),
-                singleLine = true
+        singleLine = true
     )
 }
 

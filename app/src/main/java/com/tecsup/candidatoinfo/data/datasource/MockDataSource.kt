@@ -1,68 +1,304 @@
 package com.tecsup.candidatoinfo.data.datasource
 
-import com.tecsup.candidatoinfo.data.model.Candidato
+import com.tecsup.candidatoinfo.data.model.*
 
 object MockDataSource {
+
     val candidatos = listOf(
         Candidato(
             id = "1",
-            nombreCompleto = "Silvia Montoya Vargas",
-            partidoPolitico = "partido morado",
-            cargo = "presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/150",
-            edad = 52,
+            nombreCompleto = "Keiko Sofía Fujimori Higuchi",
+            partidoPolitico = "Fuerza Popular",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/FF6B6B/FFFFFF?text=KF",
+            edad = 49,
             lugarNacimiento = "Lima",
-            profesion = "derecho - universidad USMP",
+            profesion = "Administración - Boston University",
             numeroDenuncias = 1,
-            numeroProyectos = 12
+            numeroProyectos = 45
         ),
         Candidato(
             id = "2",
-            nombreCompleto = "Carlos Aguirre Araujo",
-            partidoPolitico = "alianza nacional",
-            cargo = "Congresista - Lima",
-            fotoUrl = "https://via.placeholder.com/150",
-            edad = 45,
+            nombreCompleto = "Rafael Bernardo López Aliaga Cazorla",
+            partidoPolitico = "Renovación Popular",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/4ECDC4/FFFFFF?text=RLA",
+            edad = 60,
             lugarNacimiento = "Lima",
-            profesion = "Ingeniero Civil",
+            profesion = "Ingeniero Industrial - Universidad de Lima",
             numeroDenuncias = 0,
-            numeroProyectos = 8
+            numeroProyectos = 12
         ),
         Candidato(
             id = "3",
-            nombreCompleto = "Nelly Solorzano Chacón",
-            partidoPolitico = "Movimiento Naranja",
-            cargo = "Congresista - Cusco",
-            fotoUrl = "https://via.placeholder.com/150",
-            edad = 38,
-            lugarNacimiento = "Cusco",
-            profesion = "Economista",
-            numeroDenuncias = 2,
-            numeroProyectos = 15
+            nombreCompleto = "George Patrick Forsyth Sommer",
+            partidoPolitico = "Somos Perú",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/95E1D3/FFFFFF?text=GF",
+            edad = 39,
+            lugarNacimiento = "Lima",
+            profesion = "Futbolista Profesional",
+            numeroDenuncias = 1,
+            numeroProyectos = 8
         ),
         Candidato(
             id = "4",
-            nombreCompleto = "Roberto Paz Miranda",
-            partidoPolitico = "Partido Democrático",
+            nombreCompleto = "César Acuña Peralta",
+            partidoPolitico = "Alianza Para el Progreso",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/150",
-            edad = 48,
-            lugarNacimiento = "Arequipa",
-            profesion = "Abogado",
+            fotoUrl = "https://via.placeholder.com/300/F38181/FFFFFF?text=CA",
+            edad = 68,
+            lugarNacimiento = "Trujillo, La Libertad",
+            profesion = "Empresario Educativo",
             numeroDenuncias = 3,
-            numeroProyectos = 20
+            numeroProyectos = 67
         ),
         Candidato(
             id = "5",
-            nombreCompleto = "Ana María Torres Vega",
-            partidoPolitico = "Alianza Popular",
-            cargo = "Congresista - Lima",
-            fotoUrl = "https://via.placeholder.com/150",
-            edad = 42,
-            lugarNacimiento = "Lima",
-            profesion = "Contadora",
+            nombreCompleto = "Hernando de Soto Polar",
+            partidoPolitico = "Progresemos",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/AA96DA/FFFFFF?text=HS",
+            edad = 83,
+            lugarNacimiento = "Arequipa",
+            profesion = "Economista - Universidad de Ginebra",
             numeroDenuncias = 0,
-            numeroProyectos = 18
+            numeroProyectos = 5
+        ),
+        Candidato(
+            id = "6",
+            nombreCompleto = "Alfonso López Chau Nam",
+            partidoPolitico = "Ahora Nación",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/FCBAD3/FFFFFF?text=ALC",
+            edad = 65,
+            lugarNacimiento = "Lima",
+            profesion = "Ingeniero - UNI",
+            numeroDenuncias = 0,
+            numeroProyectos = 15
+        ),
+        Candidato(
+            id = "7",
+            nombreCompleto = "Marisol Soledad Pérez Tello",
+            partidoPolitico = "Primero la Gente",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/FFFFD2/333333?text=MPT",
+            edad = 56,
+            lugarNacimiento = "Lima",
+            profesion = "Abogada - PUCP",
+            numeroDenuncias = 0,
+            numeroProyectos = 32
+        ),
+        Candidato(
+            id = "8",
+            nombreCompleto = "Martín Alberto Vizcarra Cornejo",
+            partidoPolitico = "Perú Primero",
+            cargo = "Presidente - Nacional",
+            fotoUrl = "https://via.placeholder.com/300/A8E6CF/FFFFFF?text=MV",
+            edad = 61,
+            lugarNacimiento = "Lima",
+            profesion = "Ingeniero Civil - UNI",
+            numeroDenuncias = 2,
+            numeroProyectos = 89
         )
     )
+
+    val denuncias = listOf(
+        Denuncia(
+            id = "D1",
+            candidatoId = "1",
+            titulo = "Caso Odebrecht - Lavado de activos",
+            descripcion = "Investigación fiscal por presunto lavado de activos y organización criminal relacionado con aportes ilícitos de Odebrecht a campañas de 2011 y 2016. El caso incluye presuntos aportes no declarados por US$1.2 millones. Actualmente con comparecencia restringida.",
+            tipo = "Penal",
+            estado = "En investigación",
+            fechaDenuncia = "26-10-2018",
+            fechaResolucion = null,
+            entidadInvestigadora = "Fiscalía Especializada en Lavado de Activos",
+            linkFuenteOficial = "https://www.pj.gob.pe/",
+            gravedad = GravedadDenuncia.ALTA
+        ),
+        Denuncia(
+            id = "D2",
+            candidatoId = "3",
+            titulo = "Contratación irregular en La Victoria",
+            descripcion = "Contraloría investiga presuntas contrataciones irregulares durante gestión como alcalde, relacionadas con personal sin perfil adecuado. Caso en etapa preliminar administrativa.",
+            tipo = "Administrativa",
+            estado = "En proceso",
+            fechaDenuncia = "15-06-2021",
+            fechaResolucion = null,
+            entidadInvestigadora = "Contraloría General",
+            linkFuenteOficial = "https://www.contraloria.gob.pe/",
+            gravedad = GravedadDenuncia.MEDIA
+        ),
+        Denuncia(
+            id = "D3",
+            candidatoId = "4",
+            titulo = "Plagio en tesis doctoral",
+            descripcion = "Universidad Complutense de Madrid anuló doctorado en 2015 por plagio detectado. SUNEDU inició investigaciones sobre plagios en publicaciones académicas.",
+            tipo = "Administrativa",
+            estado = "Sentenciada",
+            fechaDenuncia = "10-03-2015",
+            fechaResolucion = "15-07-2015",
+            entidadInvestigadora = "Universidad Complutense / SUNEDU",
+            linkFuenteOficial = "https://www.sunedu.gob.pe/",
+            gravedad = GravedadDenuncia.MEDIA
+        ),
+        Denuncia(
+            id = "D4",
+            candidatoId = "4",
+            titulo = "Corrupción en obra pública La Libertad",
+            descripcion = "Fiscalía investiga irregularidades en licitaciones durante gestión como gobernador regional, relacionadas con pagos irregulares a empresas contratistas.",
+            tipo = "Penal",
+            estado = "En investigación",
+            fechaDenuncia = "22-08-2019",
+            fechaResolucion = null,
+            entidadInvestigadora = "Fiscalía Anticorrupción La Libertad",
+            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            gravedad = GravedadDenuncia.ALTA
+        ),
+        Denuncia(
+            id = "D5",
+            candidatoId = "4",
+            titulo = "Compra de voluntades - Caso Richard Swing",
+            descripcion = "Investigación preliminar por presunta entrega de dinero a congresistas para evitar vacancia en 2020. Caso involucra transferencias y testimonios de legisladores.",
+            tipo = "Penal",
+            estado = "Archivada",
+            fechaDenuncia = "05-09-2020",
+            fechaResolucion = "12-03-2021",
+            entidadInvestigadora = "Fiscalía de la Nación",
+            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            gravedad = GravedadDenuncia.BAJA
+        ),
+        Denuncia(
+            id = "D6",
+            candidatoId = "8",
+            titulo = "Vacunagate - Vacunación irregular",
+            descripcion = "Inhabilitación por 10 años por Congreso por vacunarse irregularmente contra COVID-19 durante ensayos clínicos, aprovechando cargo presidencial. Generó indignación nacional.",
+            tipo = "Administrativa",
+            estado = "Sentenciada",
+            fechaDenuncia = "10-02-2021",
+            fechaResolucion = "23-09-2021",
+            entidadInvestigadora = "Congreso de la República",
+            linkFuenteOficial = "https://www.congreso.gob.pe/",
+            gravedad = GravedadDenuncia.ALTA
+        ),
+        Denuncia(
+            id = "D7",
+            candidatoId = "8",
+            titulo = "Caso Lomas de Ilo - Corrupción",
+            descripcion = "Investigación por presuntos actos de corrupción en proyecto Lomas de Ilo durante gestión como gobernador regional. Se investigan pagos irregulares y favorecimiento a empresas.",
+            tipo = "Penal",
+            estado = "En investigación",
+            fechaDenuncia = "18-07-2019",
+            fechaResolucion = null,
+            entidadInvestigadora = "Fiscalía Especializada en Corrupción",
+            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            gravedad = GravedadDenuncia.ALTA
+        )
+    )
+
+    val propuestas = listOf(
+        Propuesta(
+            id = "P1",
+            candidatoId = "1",
+            titulo = "Reactivación económica mediante inversión privada",
+            descripcion = "Plan centrado en incentivar inversión privada mediante reducción de trabas burocráticas, simplificación tributaria y creación de zonas económicas especiales en regiones.",
+            categoria = "Economía",
+            fechaPresentacion = "15-03-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P2",
+            candidatoId = "1",
+            titulo = "Programa Cuna Más ampliado",
+            descripcion = "Ampliación de programa social para incluir cuidado infantil gratuito para madres trabajadoras en sectores vulnerables, con meta de 500,000 niños adicionales.",
+            categoria = "Social",
+            fechaPresentacion = "22-04-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P3",
+            candidatoId = "2",
+            titulo = "Tren Eléctrico Lima-Callao",
+            descripcion = "Construcción de líneas de tren eléctrico conectando Lima y Callao con tecnología moderna, reduciendo tiempos de viaje y contaminación. Inversión estimada US$8,000 millones.",
+            categoria = "Infraestructura",
+            fechaPresentacion = "10-02-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P4",
+            candidatoId = "2",
+            titulo = "Mano dura contra delincuencia",
+            descripcion = "Plan de seguridad con aumento de efectivos policiales, construcción de nuevos penales y endurecimiento de penas para delitos graves.",
+            categoria = "Seguridad",
+            fechaPresentacion = "18-03-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P5",
+            candidatoId = "4",
+            titulo = "Un millón de viviendas para clase media",
+            descripcion = "Programa de construcción de un millón de viviendas accesibles para familias con créditos subsidiados y tasas preferenciales del 4% anual.",
+            categoria = "Vivienda",
+            fechaPresentacion = "05-01-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P6",
+            candidatoId = "4",
+            titulo = "Internet gratis en colegios públicos",
+            descripcion = "Implementación de internet de alta velocidad gratuito en todos los colegios públicos del país, con equipamiento de tablets para estudiantes de primaria y secundaria.",
+            categoria = "Educación",
+            fechaPresentacion = "20-02-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P7",
+            candidatoId = "5",
+            titulo = "Formalización de propiedad informal",
+            descripcion = "Plan masivo de titulación de propiedades informales en todo el país, otorgando títulos de propiedad a 2 millones de familias para acceder al sistema financiero formal.",
+            categoria = "Economía",
+            fechaPresentacion = "12-01-2021",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P8",
+            candidatoId = "7",
+            titulo = "Reforma del sistema de justicia",
+            descripcion = "Reforma integral del Poder Judicial con juzgados anticorrupción especializados, expedientes digitales y reducción de plazos procesales mediante inteligencia artificial.",
+            categoria = "Justicia",
+            fechaPresentacion = "08-06-2024",
+            estado = "Presentado",
+            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+        ),
+        Propuesta(
+            id = "P9",
+            candidatoId = "8",
+            titulo = "Reforma política con referéndum",
+            descripcion = "Convocatoria a referéndum para aprobar reformas constitucionales incluyendo bicameralidad, inmunidad parlamentaria y reforma del sistema electoral.",
+            categoria = "Reforma Política",
+            fechaPresentacion = "15-08-2019",
+            estado = "Aprobado",
+            linkFuenteOficial = "https://www.congreso.gob.pe/"
+        )
+    )
+
+    fun getDenunciasByCandidato(candidatoId: String) =
+        denuncias.filter { it.candidatoId == candidatoId }
+
+    fun getPropuestasByCandidato(candidatoId: String) =
+        propuestas.filter { it.candidatoId == candidatoId }
+
+    fun getDenunciaById(denunciaId: String) =
+        denuncias.find { it.id == denunciaId }
+
+    fun getPropuestaById(propuestaId: String) =
+        propuestas.find { it.id == propuestaId }
 }

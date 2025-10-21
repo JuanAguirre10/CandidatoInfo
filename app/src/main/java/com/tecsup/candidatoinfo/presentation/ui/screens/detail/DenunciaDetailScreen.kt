@@ -2,8 +2,10 @@ package com.tecsup.candidatoinfo.presentation.ui.screens.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -11,19 +13,36 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.tecsup.candidatoinfo.core.util.IntentHelper
+import com.tecsup.candidatoinfo.data.datasource.MockDataSource
 import com.tecsup.candidatoinfo.presentation.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DenunciaDetailScreen(
     candidatoId: String,
+    denunciaId: String,
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    val denuncia = MockDataSource.getDenunciaById(denunciaId)
+
+    if (denuncia == null) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Denuncia no encontrada")
+        }
+        return
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -44,10 +63,10 @@ fun DenunciaDetailScreen(
                 .fillMaxSize()
                 .background(Gray50)
                 .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Header de Denuncias
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = White),
@@ -58,25 +77,44 @@ fun DenunciaDetailScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    val gravedadColor = when (denuncia.gravedad.name) {
+                        "ALTA" -> Red600
+                        "MEDIA" -> Yellow600
+                        else -> Gray500
+                    }
+
                     Box(
                         modifier = Modifier
                             .size(60.dp)
                             .clip(CircleShape)
-                            .background(Red600),
+                            .background(gravedadColor),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(text = "⚖️", fontSize = 28.sp)
                     }
 
-                    Text(
-                        text = "Denuncias",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Column {
+                        Text(
+                            text = "Denuncias",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Surface(
+                            color = gravedadColor.copy(alpha = 0.1f),
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
+                            Text(
+                                text = "Gravedad: ${denuncia.gravedad.name}",
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                                color = gravedadColor,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
                 }
             }
 
-            // Detalle de la denuncia
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = White),
@@ -89,34 +127,43 @@ fun DenunciaDetailScreen(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Text(
-                        text = "Investigación por presuntos\nconflictos e intereses",
+                        text = denuncia.titulo,
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold
                     )
+
+                    Divider()
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Column {
+                        Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 text = "estado:",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = TextSecondary
                             )
                             Spacer(modifier = Modifier.height(4.dp))
+
+                            val estadoColor = when (denuncia.estado) {
+                                "Archivada", "Desestimada" -> Gray500
+                                "Sentenciada" -> Red600
+                                else -> Yellow600
+                            }
+
                             Button(
                                 onClick = {},
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Gray500
+                                    containerColor = estadoColor
                                 ),
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Text("archivado")
+                                Text(denuncia.estado)
                             }
                         }
 
-                        Column {
+                        Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 text = "fecha:",
                                 style = MaterialTheme.typography.bodyMedium,
@@ -124,10 +171,18 @@ fun DenunciaDetailScreen(
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "06-10-2015",
+                                text = denuncia.fechaDenuncia,
                                 style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.SemiBold
                             )
+                        }
+                    }
+
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        InfoRowDetail("Tipo:", denuncia.tipo)
+                        InfoRowDetail("Entidad:", denuncia.entidadInvestigadora)
+                        if (denuncia.fechaResolucion != null) {
+                            InfoRowDetail("Fecha resolución:", denuncia.fechaResolucion)
                         }
                     }
 
@@ -140,7 +195,7 @@ fun DenunciaDetailScreen(
                     )
 
                     Text(
-                        text = "denuncia archivada por falta de meritos tras la investigacion de la comisión y directiva",
+                        text = denuncia.descripcion,
                         style = MaterialTheme.typography.bodyLarge,
                         color = TextSecondary,
                         lineHeight = 24.sp
@@ -149,7 +204,12 @@ fun DenunciaDetailScreen(
                     Divider()
 
                     Button(
-                        onClick = { /* Abrir enlace externo */ },
+                        onClick = {
+                            IntentHelper.openExternalLink(
+                                context,
+                                denuncia.linkFuenteOficial
+                            )
+                        },
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Black
@@ -161,7 +221,6 @@ fun DenunciaDetailScreen(
                 }
             }
 
-            // Aviso legal
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = Yellow50),
@@ -182,5 +241,21 @@ fun DenunciaDetailScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun InfoRowDetail(label: String, value: String) {
+    Row {
+        Text(
+            text = label,
+            fontWeight = FontWeight.SemiBold,
+            color = TextPrimary,
+            modifier = Modifier.width(120.dp)
+        )
+        Text(
+            text = value,
+            color = TextSecondary
+        )
     }
 }

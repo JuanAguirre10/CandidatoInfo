@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -14,31 +15,39 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.tecsup.candidatoinfo.data.datasource.MockDataSource
-import com.tecsup.candidatoinfo.presentation.ui.components.InfoCard
+import com.tecsup.candidatoinfo.core.util.IntentHelper
+import com.tecsup.candidatoinfo.core.util.UiState
+import com.tecsup.candidatoinfo.data.model.Denuncia
+import com.tecsup.candidatoinfo.data.model.Propuesta
+import com.tecsup.candidatoinfo.presentation.ui.components.*
 import com.tecsup.candidatoinfo.presentation.ui.theme.*
+import com.tecsup.candidatoinfo.presentation.viewmodel.DetailViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     candidatoId: String,
     navController: NavController,
+    viewModel: DetailViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
-    val candidato = MockDataSource.candidatos.find { it.id == candidatoId }
-    var selectedTab by remember { mutableStateOf(0) }
+    val context = LocalContext.current
+    val candidatoState by viewModel.candidatoState.collectAsState()
+    val denunciasState by viewModel.denunciasState.collectAsState()
+    val propuestasState by viewModel.propuestasState.collectAsState()
+    val selectedTab by viewModel.selectedTab.collectAsState()
+
     val tabs = listOf("proyectos", "Denuncias")
 
-    if (candidato == null) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Candidato no encontrado")
-        }
-        return
+    LaunchedEffect(candidatoId) {
+        viewModel.loadCandidatoData(candidatoId)
     }
 
     Scaffold(
@@ -56,157 +65,295 @@ fun DetailScreen(
             )
         }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = modifier
-                .fillMaxSize()
-                .background(Gray50)
-                .padding(paddingValues),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            // Header con foto y datos básicos
-            item {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = White),
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        AsyncImage(
-                            model = candidato.fotoUrl,
-                            contentDescription = "Foto de ${candidato.nombreCompleto}",
-                            modifier = Modifier
-                                .size(120.dp)
-                                .clip(CircleShape),
-                            contentScale = ContentScale.Crop
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        Text(
-                            text = candidato.nombreCompleto,
-                            style = MaterialTheme.typography.headlineSmall,
-                            fontWeight = FontWeight.Bold,
-                            color = TextPrimary
-                        )
-
-                        Text(
-                            text = candidato.partidoPolitico,
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
-                            color = TextSecondary
-                        )
-
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                        Text(
-                            text = candidato.cargo,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Blue600
-                        )
-                    }
-                }
+        when (candidatoState) {
+            is UiState.Loading -> {
+                LoadingIndicator(message = "Cargando información del candidato...")
             }
 
-            // Datos personales
-            item {
-                InfoCard(title = "Datos Personales") {
-                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        InfoRow("edad", "${candidato.edad} años")
-                        InfoRow("formación", "${candidato.profesion} - universidad ${candidato.lugarNacimiento}")
-                        InfoRow("ocupación", "candidato a ${candidato.cargo}")
-                    }
-                }
+            is UiState.Error -> {
+                val errorMessage = (candidatoState as UiState.Error).message
+                ErrorState(
+                    message = errorMessage,
+                    onRetry = { viewModel.loadCandidatoData(candidatoId) }
+                )
             }
 
-            // Indicadores rápidos
-            item {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = White),
-                    shape = RoundedCornerShape(12.dp)
+            is UiState.Success -> {
+                val candidato = (candidatoState as UiState.Success).data
+
+                LazyColumn(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .background(Gray50)
+                        .padding(paddingValues),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text(
-                            text = "indicadores rápidos",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        Row(
+                    item {
+                        Card(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly
+                            colors = CardDefaults.cardColors(containerColor = White),
+                            shape = RoundedCornerShape(12.dp)
                         ) {
-                            IndicadorButton(
-                                icon = "📝",
-                                label = "proyectos\npresentados",
-                                backgroundColor = Blue600,
-                                onClick = { selectedTab = 0 }
-                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(24.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                AsyncImage(
+                                    model = candidato.fotoUrl,
+                                    contentDescription = "Foto de ${candidato.nombreCompleto}",
+                                    modifier = Modifier
+                                        .size(120.dp)
+                                        .clip(CircleShape),
+                                    contentScale = ContentScale.Crop
+                                )
 
-                            IndicadorButton(
-                                icon = "⚖️",
-                                label = "Denuncias\nRegistradas",
-                                backgroundColor = Red600,
-                                onClick = { selectedTab = 1 }
-                            )
+                                Spacer(modifier = Modifier.height(16.dp))
+
+                                Text(
+                                    text = candidato.nombreCompleto,
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    fontWeight = FontWeight.Bold,
+                                    color = TextPrimary
+                                )
+
+                                Text(
+                                    text = candidato.partidoPolitico,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                                    color = TextSecondary
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Text(
+                                    text = candidato.cargo,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = Blue600
+                                )
+                            }
+                        }
+                    }
+
+                    item {
+                        InfoCard(title = "Datos Personales") {
+                            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                InfoRow("edad", "${candidato.edad} años")
+                                InfoRow("formación", "${candidato.profesion}")
+                                InfoRow("lugar de nacimiento", candidato.lugarNacimiento)
+                                InfoRow("ocupación", "candidato a ${candidato.cargo}")
+                            }
+                        }
+                    }
+
+                    item {
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(containerColor = White),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = "indicadores rápidos",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+
+                                Spacer(modifier = Modifier.height(16.dp))
+
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceEvenly
+                                ) {
+                                    IndicadorButton(
+                                        icon = "📝",
+                                        label = "proyectos\npresentados",
+                                        count = candidato.numeroProyectos,
+                                        backgroundColor = Blue600,
+                                        onClick = { viewModel.updateSelectedTab(0) }
+                                    )
+
+                                    IndicadorButton(
+                                        icon = "⚖️",
+                                        label = "Denuncias\nRegistradas",
+                                        count = candidato.numeroDenuncias,
+                                        backgroundColor = Red600,
+                                        onClick = { viewModel.updateSelectedTab(1) }
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    item {
+                        TabRow(
+                            selectedTabIndex = selectedTab,
+                            containerColor = White,
+                            contentColor = Blue600
+                        ) {
+                            tabs.forEachIndexed { index, title ->
+                                Tab(
+                                    selected = selectedTab == index,
+                                    onClick = { viewModel.updateSelectedTab(index) },
+                                    text = { Text(title) }
+                                )
+                            }
+                        }
+                    }
+
+                    when (selectedTab) {
+                        0 -> {
+                            when (propuestasState) {
+                                is UiState.Loading -> {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            CircularProgressIndicator(color = Blue600)
+                                        }
+                                    }
+                                }
+
+                                is UiState.Success -> {
+                                    val propuestas = (propuestasState as UiState.Success).data
+                                    items(propuestas) { propuesta ->
+                                        ProyectoItem(
+                                            propuesta = propuesta,
+                                            onClickLink = {
+                                                IntentHelper.openExternalLink(
+                                                    context,
+                                                    propuesta.linkFuenteOficial
+                                                )
+                                            }
+                                        )
+                                    }
+                                }
+
+                                is UiState.Empty -> {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Text(
+                                                text = "Este candidato no tiene proyectos registrados",
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = TextSecondary
+                                            )
+                                        }
+                                    }
+                                }
+
+                                is UiState.Error -> {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Text(
+                                                text = "Error al cargar proyectos",
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = Red600
+                                            )
+                                        }
+                                    }
+                                }
+
+                                else -> {}
+                            }
+                        }
+
+                        1 -> {
+                            when (denunciasState) {
+                                is UiState.Loading -> {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            CircularProgressIndicator(color = Red600)
+                                        }
+                                    }
+                                }
+
+                                is UiState.Success -> {
+                                    val denuncias = (denunciasState as UiState.Success).data
+                                    items(denuncias) { denuncia ->
+                                        DenunciaItem(
+                                            denuncia = denuncia,
+                                            onClick = {
+                                                navController.navigate("denuncia/${candidato.id}/${denuncia.id}")
+                                            }
+                                        )
+                                    }
+                                }
+
+                                is UiState.Empty -> {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Column(
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                                            ) {
+                                                Text(text = "✅", fontSize = 48.sp)
+                                                Text(
+                                                    text = "Sin denuncias registradas",
+                                                    style = MaterialTheme.typography.bodyLarge,
+                                                    fontWeight = FontWeight.SemiBold,
+                                                    color = Green600
+                                                )
+                                                Text(
+                                                    text = "Este candidato no tiene denuncias en su historial",
+                                                    style = MaterialTheme.typography.bodyMedium,
+                                                    color = TextSecondary
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+
+                                is UiState.Error -> {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Text(
+                                                text = "Error al cargar denuncias",
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = Red600
+                                            )
+                                        }
+                                    }
+                                }
+
+                                else -> {}
+                            }
                         }
                     }
                 }
             }
 
-            // Tabs
-            item {
-                TabRow(
-                    selectedTabIndex = selectedTab,
-                    containerColor = White,
-                    contentColor = Blue600
-                ) {
-                    tabs.forEachIndexed { index, title ->
-                        Tab(
-                            selected = selectedTab == index,
-                            onClick = { selectedTab = index },
-                            text = { Text(title) }
-                        )
-                    }
-                }
-            }
-
-            // Contenido de tabs
-            when (selectedTab) {
-                0 -> {
-                    item {
-                        ProyectoItem(
-                            titulo = "📝 reforma del sistema tributario",
-                            descripcion = "propuesta para simplificar el sistema monetario y reducir la evasión fiscal.",
-                            estado = "presentado",
-                            fecha = "14-02-2014",
-                            estadoColor = Blue600
-                        )
-                    }
-                }
-                1 -> {
-                    item {
-                        DenunciaItem(
-                            titulo = "⚖️ investigación por presuntos intereses",
-                            descripcion = "denuncia archivada por falta de meritos tras la investigacion de la comisión.",
-                            estado = "archivado",
-                            fecha = "06-10-2015",
-                            onClick = {
-                                navController.navigate("denuncia/${candidato.id}")
-                            }
-                        )
-                    }
-                }
-            }
+            else -> {}
         }
     }
 }
@@ -230,6 +377,7 @@ fun InfoRow(label: String, value: String) {
 fun IndicadorButton(
     icon: String,
     label: String,
+    count: Int,
     backgroundColor: androidx.compose.ui.graphics.Color,
     onClick: () -> Unit
 ) {
@@ -241,13 +389,14 @@ fun IndicadorButton(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .width(140.dp)
-            .height(80.dp)
+            .height(90.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = icon, fontSize = 24.sp)
             Spacer(modifier = Modifier.height(4.dp))
+            Text(text = "$count", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Text(
                 text = label,
                 fontSize = 10.sp,
@@ -259,11 +408,8 @@ fun IndicadorButton(
 
 @Composable
 fun ProyectoItem(
-    titulo: String,
-    descripcion: String,
-    estado: String,
-    fecha: String,
-    estadoColor: androidx.compose.ui.graphics.Color
+    propuesta: Propuesta,
+    onClickLink: () -> Unit
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -276,7 +422,7 @@ fun ProyectoItem(
                 .padding(16.dp)
         ) {
             Text(
-                text = titulo,
+                text = "📝 ${propuesta.titulo}",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -284,31 +430,57 @@ fun ProyectoItem(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = descripcion,
+                text = propuesta.descripcion,
                 style = MaterialTheme.typography.bodyMedium,
                 color = TextSecondary
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Categoría: ${propuesta.categoria}",
+                style = MaterialTheme.typography.bodySmall,
+                color = Blue600,
+                fontWeight = FontWeight.SemiBold
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = estadoColor
-                    ),
-                    shape = RoundedCornerShape(8.dp)
-                ) {
-                    Text(estado)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val estadoColor = when (propuesta.estado) {
+                        "Aprobado" -> Green600
+                        "En Debate" -> Yellow600
+                        "Rechazado" -> Red600
+                        else -> Blue600
+                    }
+
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = estadoColor
+                        ),
+                        shape = RoundedCornerShape(8.dp),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Text(propuesta.estado, fontSize = 12.sp)
+                    }
+
+                    Text(
+                        text = propuesta.fechaPresentacion,
+                        modifier = Modifier.align(Alignment.CenterVertically),
+                        color = TextSecondary,
+                        fontSize = 12.sp
+                    )
                 }
 
-                Text(
-                    text = fecha,
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    color = TextSecondary
-                )
+                TextButton(onClick = onClickLink) {
+                    Text("Ver fuente →")
+                }
             }
         }
     }
@@ -316,10 +488,7 @@ fun ProyectoItem(
 
 @Composable
 fun DenunciaItem(
-    titulo: String,
-    descripcion: String,
-    estado: String,
-    fecha: String,
+    denuncia: Denuncia,
     onClick: () -> Unit
 ) {
     Card(
@@ -334,39 +503,93 @@ fun DenunciaItem(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(
-                text = titulo,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "⚖️ ${denuncia.titulo}",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
+                )
+
+                // Badge de gravedad
+                val gravedadColor = when (denuncia.gravedad.name) {
+                    "ALTA" -> Red600
+                    "MEDIA" -> Yellow600
+                    else -> Gray500
+                }
+
+                Surface(
+                    color = gravedadColor.copy(alpha = 0.1f),
+                    shape = RoundedCornerShape(4.dp)
+                ) {
+                    Text(
+                        text = denuncia.gravedad.name,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        color = gravedadColor,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = descripcion,
+                text = denuncia.descripcion,
                 style = MaterialTheme.typography.bodyMedium,
-                color = TextSecondary
+                color = TextSecondary,
+                maxLines = 2
             )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "Tipo: ${denuncia.tipo}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = TextSecondary
+                )
+                Text(text = "•", color = TextSecondary)
+                Text(
+                    text = denuncia.entidadInvestigadora,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = TextSecondary
+                )
+            }
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                val estadoColor = when (denuncia.estado) {
+                    "Archivada", "Desestimada" -> Gray500
+                    "Sentenciada" -> Red600
+                    else -> Yellow600
+                }
+
                 Button(
                     onClick = {},
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Gray500
+                        containerColor = estadoColor
                     ),
-                    shape = RoundedCornerShape(8.dp)
+                    shape = RoundedCornerShape(8.dp),
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
                 ) {
-                    Text(estado)
+                    Text(denuncia.estado, fontSize = 12.sp)
                 }
 
                 Text(
-                    text = fecha,
+                    text = denuncia.fechaDenuncia,
                     modifier = Modifier.align(Alignment.CenterVertically),
-                    color = TextSecondary
+                    color = TextSecondary,
+                    fontSize = 12.sp
                 )
             }
         }
