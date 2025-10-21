@@ -1,7 +1,3 @@
-# ============================
-# 📱 Proyecto Android Jetpack Compose
-# ============================
-
 # Gradle
 .gradle/
 build/
@@ -9,38 +5,17 @@ build/
 
 # Android Studio
 .idea/
+.local.properties
+.DS_Store
+
+# Kotlin / Jetpack
 *.iml
-local.properties
-
-# Keystore files
-*.jks
-*.keystore
-
-# Log files
-*.log
-
-# Generated files
-captures/
-output.json
-app/release/
-app/debug/
-
-# Kotlin/Java build caches
-app/build/
 *.class
+*.dex
 *.apk
 *.aab
 
-# OS files
-.DS_Store
-Thumbs.db
-
 # Misc
-*.tmp
-*.bak
-*.swp
-*.lock
-
-# ============================
-# ✅ Fin del .gitignore
-# ============================
+captures/
+outputs/
+app/release/
