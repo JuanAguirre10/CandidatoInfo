@@ -5,7 +5,7 @@ data class Candidato(
     val nombreCompleto: String,
     val partidoPolitico: String,
     val cargo: String, // "Presidente" o "Congresista"
-    val fotoUrl: String,
+    val fotoResId: Int, // 👈 referencia a imagen local en drawable
     val edad: Int,
     val lugarNacimiento: String,
     val profesion: String,
