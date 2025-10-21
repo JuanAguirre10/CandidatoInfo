@@ -54,3 +54,5 @@ generated/
 .idea/codeStyles/
 .idea/inspectionProfiles/
 .idea/deploymentTargetDropDown.xml
+".gradle/" 
+"app/build/" 

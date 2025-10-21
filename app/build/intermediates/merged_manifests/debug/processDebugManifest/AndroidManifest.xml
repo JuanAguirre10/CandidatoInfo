@@ -8,6 +8,9 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="36" />
 
+    <!-- ✅ Permiso necesario para conexiones de red (OkHttp, APIs, imágenes, etc.) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <permission
         android:name="com.tecsup.candidatoinfo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
@@ -43,7 +46,8 @@
             android:exported="true" />
         <activity
             android:name="androidx.activity.ComponentActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
