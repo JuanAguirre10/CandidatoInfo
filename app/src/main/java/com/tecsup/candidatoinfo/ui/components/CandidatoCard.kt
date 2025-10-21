@@ -1,5 +1,6 @@
 package com.tecsup.candidatoinfo.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -9,13 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.tecsup.candidatoinfo.data.model.Candidato
 import com.tecsup.candidatoinfo.ui.theme.*
 
-// ✅ Versión temporal de IndicadorBadge para evitar errores
 @Composable
 fun IndicadorBadge(
     icon: String,
@@ -43,7 +43,6 @@ fun IndicadorBadge(
     }
 }
 
-// ✅ Tarjeta principal de candidato
 @Composable
 fun CandidatoCard(
     candidato: Candidato,
@@ -64,8 +63,8 @@ fun CandidatoCard(
                 .padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            AsyncImage(
-                model = candidato.fotoUrl,
+            Image(
+                painter = painterResource(id = candidato.fotoResId),
                 contentDescription = "Foto de ${candidato.nombreCompleto}",
                 modifier = Modifier
                     .size(80.dp)
