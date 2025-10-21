@@ -1,58 +1,46 @@
-# ==========================================
-# 🌟 ANDROID STUDIO / JETPACK COMPOSE PROJECT
-# ==========================================
+# ============================
+# 📱 Proyecto Android Jetpack Compose
+# ============================
 
 # Gradle
 .gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar
+**/build/
 
-# Local configuration (do not share)
-local.properties
-/local.properties
-
-# IntelliJ / Android Studio project files
+# Android Studio
 .idea/
-.idea/caches
-.idea/libraries
-.idea/modules.xml
-.idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
-.idea/gradle.xml
-.idea/misc.xml
 *.iml
+local.properties
 
-# Native builds
-.externalNativeBuild/
-.cxx/
+# Keystore files
+*.jks
+*.keystore
 
-# Captures & generated outputs
+# Log files
+*.log
+
+# Generated files
 captures/
-outputs/
+output.json
+app/release/
+app/debug/
+
+# Kotlin/Java build caches
+app/build/
+*.class
 *.apk
 *.aab
 
-# System files
+# OS files
 .DS_Store
 Thumbs.db
 
-# Logs & temporary files
-*.log
-*.temp
+# Misc
 *.tmp
+*.bak
+*.swp
+*.lock
 
-# Kotlin / Compose build outputs
-bin/
-intermediates/
-generated/
-
-# ==========================================
-# ✅ CUSTOM IGNORE (extra seguridad)
-# ==========================================
-# Prevent IDE conflicts on shared repos
-.idea/codeStyles/
-.idea/inspectionProfiles/
-.idea/deploymentTargetDropDown.xml
-".gradle/" 
-"app/build/" 
+# ============================
+# ✅ Fin del .gitignore
+# ============================
