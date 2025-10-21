@@ -4,7 +4,7 @@ build/
 **/build/
 !gradle/wrapper/gradle-wrapper.jar
 
-# Local configuration
+# Local config
 local.properties
 .idea/
 
@@ -16,7 +16,7 @@ local.properties
 *.ipr
 *.iws
 
-# Generated files
+# Generated
 captures/
 .externalNativeBuild/
 .cxx/
@@ -24,12 +24,10 @@ outputs/
 intermediates/
 navigation.json
 
-# Kotlin
+# Kotlin compiled
 *.class
 *.kotlin_module
+*.dex
 
 # Others
 .DS_Store
-*.apk
-*.aar
-*.dex
