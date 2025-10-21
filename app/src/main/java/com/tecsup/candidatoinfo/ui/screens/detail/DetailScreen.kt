@@ -1,5 +1,6 @@
 package com.tecsup.candidatoinfo.ui.screens.detail
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,11 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
 import com.tecsup.candidatoinfo.data.datasource.MockDataSource
 import com.tecsup.candidatoinfo.ui.theme.*
 
@@ -46,7 +47,7 @@ fun DetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("volver") },
+                title = { Text("Volver") },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Volver")
@@ -77,8 +78,9 @@ fun DetailScreen(
                             .padding(24.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        AsyncImage(
-                            model = candidato.fotoUrl,
+                        // ✅ Imagen local (reemplazo del error de fotoUrl)
+                        Image(
+                            painter = painterResource(id = candidato.fotoResId),
                             contentDescription = "Foto de ${candidato.nombreCompleto}",
                             modifier = Modifier
                                 .size(120.dp)
@@ -128,8 +130,8 @@ fun DetailScreen(
                         )
                         Spacer(Modifier.height(12.dp))
                         InfoRow("Edad", "${candidato.edad} años")
-                        InfoRow("Formación", "${candidato.profesion}")
-                        InfoRow("Región", "${candidato.lugarNacimiento}")
+                        InfoRow("Formación", candidato.profesion)
+                        InfoRow("Región", candidato.lugarNacimiento)
                     }
                 }
             }
@@ -238,7 +240,9 @@ fun IndicadorButton(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
         shape = RoundedCornerShape(12.dp),
-        modifier = Modifier.width(140.dp).height(80.dp)
+        modifier = Modifier
+            .width(140.dp)
+            .height(80.dp)
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = icon, fontSize = 24.sp)
