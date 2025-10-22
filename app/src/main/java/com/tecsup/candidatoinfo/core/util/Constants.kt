@@ -1,4 +1,4 @@
-package com.tecsup.candidateinfo.core.util
+package com.tecsup.candidatoinfo.core.util
 
 object Constants {
     const val JNE_BASE_URL = "https://plataformaelectoral.jne.gob.pe/"

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- ✅ Permiso necesario para conexiones de red (OkHttp, APIs, imágenes, etc.) -->
+    <!-- Permiso necesario para conexión a internet (API, imágenes, etc.) -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -30,4 +30,3 @@
     </application>
 
 </manifest>
-

@@ -1,7 +1,6 @@
 package com.tecsup.candidatoinfo.data.datasource
 
 import com.tecsup.candidatoinfo.data.model.Candidato
-import kotlin.collections.listOf  // 🔥 IMPORTANTE para que reconozca listOf()
 
 object MockDataSource {
 
