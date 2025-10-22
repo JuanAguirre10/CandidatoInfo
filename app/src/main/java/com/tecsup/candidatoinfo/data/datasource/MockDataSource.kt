@@ -1,45 +1,46 @@
 package com.tecsup.candidatoinfo.data.datasource
 
-import com.tecsup.candidatoinfo.R
 import com.tecsup.candidatoinfo.data.model.Candidato
+import kotlin.collections.listOf  // 🔥 IMPORTANTE para que reconozca listOf()
 
 object MockDataSource {
+
     val candidatos = listOf(
         Candidato(
             id = "1",
             nombreCompleto = "Dina Boluarte Zegarra",
             partidoPolitico = "Independiente",
-            cargo = "Presidenta de la República",
-            fotoResId = R.drawable.dina,
-            edad = 62,
-            lugarNacimiento = "Apurímac",
+            cargo = "Presidenta del Perú",
+            fotoResId = 0,
+            edad = 61,
+            lugarNacimiento = "Apurímac, Perú",
             profesion = "Abogada",
-            numeroDenuncias = 1,
-            numeroProyectos = 12
+            numeroDenuncias = 2,
+            numeroProyectos = 15
         ),
         Candidato(
             id = "2",
-            nombreCompleto = "Keiko Sofía Fujimori Higuchi",
+            nombreCompleto = "Keiko Fujimori Higuchi",
             partidoPolitico = "Fuerza Popular",
-            cargo = "Excandidata presidencial",
-            fotoResId = R.drawable.keiko,
+            cargo = "Líder del partido Fuerza Popular",
+            fotoResId = 0,
             edad = 49,
-            lugarNacimiento = "Lima",
-            profesion = "Administradora de Empresas",
-            numeroDenuncias = 2,
-            numeroProyectos = 18
+            lugarNacimiento = "Lima, Perú",
+            profesion = "Economista",
+            numeroDenuncias = 5,
+            numeroProyectos = 8
         ),
         Candidato(
             id = "3",
-            nombreCompleto = "Verónika Fanny Mendoza Frisch",
-            partidoPolitico = "Juntos por el Perú",
-            cargo = "Excandidata presidencial",
-            fotoResId = R.drawable.veronica,
+            nombreCompleto = "Verónica Mendoza Frisch",
+            partidoPolitico = "Nuevo Perú",
+            cargo = "Líder del movimiento progresista Nuevo Perú",
+            fotoResId = 0,
             edad = 44,
-            lugarNacimiento = "Cusco",
-            profesion = "Antropóloga",
+            lugarNacimiento = "Cusco, Perú",
+            profesion = "Psicóloga",
             numeroDenuncias = 0,
-            numeroProyectos = 10
+            numeroProyectos = 22
         )
     )
 }

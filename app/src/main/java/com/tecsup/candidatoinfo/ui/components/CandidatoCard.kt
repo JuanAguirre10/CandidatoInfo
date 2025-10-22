@@ -13,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.tecsup.candidatoinfo.R // 👈 IMPORTANTE
 import com.tecsup.candidatoinfo.data.model.Candidato
 import com.tecsup.candidatoinfo.ui.theme.*
 
@@ -63,8 +64,11 @@ fun CandidatoCard(
                 .padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            // 🧩 Carga segura de imagen
+            val imageId = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.placeholder
+
             Image(
-                painter = painterResource(id = candidato.fotoResId),
+                painter = painterResource(id = imageId),
                 contentDescription = "Foto de ${candidato.nombreCompleto}",
                 modifier = Modifier
                     .size(80.dp)
@@ -118,3 +122,5 @@ fun CandidatoCard(
         }
     }
 }
+
+
