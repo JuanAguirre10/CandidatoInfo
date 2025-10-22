@@ -41,4 +41,23 @@ class CandidatoRepositoryImpl : CandidatoRepository {
             it.cargo.contains(cargo, ignoreCase = true)
         }
     }
+
+    override fun filterByRegion(region: String): List<Candidato> {
+        if (region == "Todas") return dataSource.candidatos
+
+        return dataSource.candidatos.filter {
+            it.lugarNacimiento.contains(region, ignoreCase = true) ||
+                    it.cargo.contains(region, ignoreCase = true)
+        }
+    }
+
+    override fun getRegiones(): List<String> {
+        return listOf(
+            "Todas",
+            "Lima",
+            "Cusco",
+            "Arequipa",
+            "Trujillo"
+        )
+    }
 }

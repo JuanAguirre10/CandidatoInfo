@@ -625,6 +625,27 @@ int attr listPreferredItemPaddingRight 0x7f03022d
 int attr listPreferredItemPaddingStart 0x7f03022e
 int attr logo 0x7f03022f
 int attr logoDescription 0x7f030230
+int attr lottieAnimationViewStyle 0x7f0303b8
+int attr lottie_asyncUpdates 0x7f0303b9
+int attr lottie_autoPlay 0x7f0303ba
+int attr lottie_cacheComposition 0x7f0303bb
+int attr lottie_clipToCompositionBounds 0x7f0303bc
+int attr lottie_colorFilter 0x7f0303bd
+int attr lottie_defaultFontFileExtension 0x7f0303be
+int attr lottie_enableMergePathsForKitKatAndAbove 0x7f0303bf
+int attr lottie_fallbackRes 0x7f0303c0
+int attr lottie_fileName 0x7f0303c1
+int attr lottie_ignoreDisabledSystemAnimations 0x7f0303c2
+int attr lottie_imageAssetsFolder 0x7f0303c3
+int attr lottie_loop 0x7f0303c4
+int attr lottie_progress 0x7f0303c5
+int attr lottie_rawRes 0x7f0303c6
+int attr lottie_renderMode 0x7f0303c7
+int attr lottie_repeatCount 0x7f0303c8
+int attr lottie_repeatMode 0x7f0303c9
+int attr lottie_speed 0x7f0303ca
+int attr lottie_url 0x7f0303cb
+int attr lottie_useCompositionFrameRate 0x7f0303cc
 int attr materialAlertDialogBodyTextStyle 0x7f030231
 int attr materialAlertDialogTheme 0x7f030232
 int attr materialAlertDialogTitleIconStyle 0x7f030233
@@ -1749,6 +1770,8 @@ int drawable btn_radio_off_mtrl 0x7f07005c
 int drawable btn_radio_off_to_on_mtrl_animation 0x7f07005d
 int drawable btn_radio_on_mtrl 0x7f07005e
 int drawable btn_radio_on_to_off_mtrl_animation 0x7f07005f
+int drawable candidatoinfo 0x7f070099
+int drawable candidatoinfosinfodno 0x7f07009a
 int drawable design_fab_background 0x7f070060
 int drawable design_ic_visibility 0x7f070061
 int drawable design_ic_visibility_off 0x7f070062
@@ -1889,6 +1912,7 @@ int id auto 0x7f08004f
 int id autoComplete 0x7f080050
 int id autoCompleteToEnd 0x7f080051
 int id autoCompleteToStart 0x7f080052
+int id automatic 0x7f0801be
 int id barrier 0x7f080053
 int id baseline 0x7f080054
 int id beginOnFirstDraw 0x7f080055
@@ -1949,6 +1973,7 @@ int id direct 0x7f08008b
 int id disableHome 0x7f08008c
 int id disablePostScroll 0x7f08008d
 int id disableScroll 0x7f08008e
+int id disabled 0x7f0801bf
 int id disjoint 0x7f08008f
 int id dragDown 0x7f080090
 int id dragEnd 0x7f080091
@@ -1963,6 +1988,7 @@ int id easeOut 0x7f080099
 int id edit_query 0x7f08009a
 int id edit_text_id 0x7f08009b
 int id elastic 0x7f08009c
+int id enabled 0x7f0801c0
 int id end 0x7f08009d
 int id endToStart 0x7f08009e
 int id enterAlways 0x7f08009f
@@ -1989,6 +2015,7 @@ int id graph_wrap 0x7f0800b3
 int id group_divider 0x7f0800b4
 int id groups 0x7f0800b5
 int id guideline 0x7f0800b6
+int id hardware 0x7f0801c1
 int id header_title 0x7f0800b7
 int id hide_graphics_layer_in_inspector_tag 0x7f0800b8
 int id hide_ime_id 0x7f0800b9
@@ -2022,6 +2049,7 @@ int id linear 0x7f0800d4
 int id listMode 0x7f0800d5
 int id list_item 0x7f0800d6
 int id locale 0x7f0800d7
+int id lottie_layer_name 0x7f0801c2
 int id ltr 0x7f0800d8
 int id masked 0x7f0800d9
 int id material_clock_display 0x7f0800da
@@ -2116,6 +2144,8 @@ int id radio 0x7f080132
 int id ratio 0x7f080133
 int id rectangles 0x7f080134
 int id report_drawn 0x7f080135
+int id restart 0x7f0801c3
+int id reverse 0x7f0801c4
 int id reverseSawtooth 0x7f080136
 int id right 0x7f080137
 int id rightToLeft 0x7f080138
@@ -2160,6 +2190,7 @@ int id snackbar_action 0x7f08015e
 int id snackbar_text 0x7f08015f
 int id snap 0x7f080160
 int id snapMargins 0x7f080161
+int id software 0x7f0801c5
 int id spacer 0x7f080162
 int id special_effects_controller_view_tag 0x7f080163
 int id spline 0x7f080164
@@ -2410,6 +2441,7 @@ int layout text_view_without_line_height 0x7f0b0071
 int mipmap ic_launcher 0x7f0c0000
 int mipmap ic_launcher_round 0x7f0c0001
 int plurals mtrl_badge_content_description 0x7f0d0000
+int raw peru_flag 0x7f120000
 int string abc_action_bar_home_description 0x7f0e0000
 int string abc_action_bar_up_description 0x7f0e0001
 int string abc_action_menu_overflow_description 0x7f0e0002
@@ -4398,6 +4430,27 @@ int styleable LinearProgressIndicator_indicatorDirectionLinear 1
 int[] styleable ListPopupWindow { 0x010102ac, 0x010102ad }
 int styleable ListPopupWindow_android_dropDownHorizontalOffset 0
 int styleable ListPopupWindow_android_dropDownVerticalOffset 1
+int[] styleable LottieAnimationView { 0x7f0303b9, 0x7f0303ba, 0x7f0303bb, 0x7f0303bc, 0x7f0303bd, 0x7f0303be, 0x7f0303bf, 0x7f0303c0, 0x7f0303c1, 0x7f0303c2, 0x7f0303c3, 0x7f0303c4, 0x7f0303c5, 0x7f0303c6, 0x7f0303c7, 0x7f0303c8, 0x7f0303c9, 0x7f0303ca, 0x7f0303cb, 0x7f0303cc }
+int styleable LottieAnimationView_lottie_asyncUpdates 0
+int styleable LottieAnimationView_lottie_autoPlay 1
+int styleable LottieAnimationView_lottie_cacheComposition 2
+int styleable LottieAnimationView_lottie_clipToCompositionBounds 3
+int styleable LottieAnimationView_lottie_colorFilter 4
+int styleable LottieAnimationView_lottie_defaultFontFileExtension 5
+int styleable LottieAnimationView_lottie_enableMergePathsForKitKatAndAbove 6
+int styleable LottieAnimationView_lottie_fallbackRes 7
+int styleable LottieAnimationView_lottie_fileName 8
+int styleable LottieAnimationView_lottie_ignoreDisabledSystemAnimations 9
+int styleable LottieAnimationView_lottie_imageAssetsFolder 10
+int styleable LottieAnimationView_lottie_loop 11
+int styleable LottieAnimationView_lottie_progress 12
+int styleable LottieAnimationView_lottie_rawRes 13
+int styleable LottieAnimationView_lottie_renderMode 14
+int styleable LottieAnimationView_lottie_repeatCount 15
+int styleable LottieAnimationView_lottie_repeatMode 16
+int styleable LottieAnimationView_lottie_speed 17
+int styleable LottieAnimationView_lottie_url 18
+int styleable LottieAnimationView_lottie_useCompositionFrameRate 19
 int[] styleable MaterialAlertDialog { 0x7f030043, 0x7f030044, 0x7f030045, 0x7f030046 }
 int styleable MaterialAlertDialog_backgroundInsetBottom 0
 int styleable MaterialAlertDialog_backgroundInsetEnd 1

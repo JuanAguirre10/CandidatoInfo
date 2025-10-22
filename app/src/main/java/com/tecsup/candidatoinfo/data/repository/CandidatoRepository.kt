@@ -21,4 +21,8 @@ interface CandidatoRepository {
     fun searchCandidatos(query: String): List<Candidato>
 
     fun filterByCargo(cargo: String): List<Candidato>
+
+    fun filterByRegion(region: String): List<Candidato>
+
+    fun getRegiones(): List<String>
 }

@@ -133,4 +133,68 @@ class HomeViewModel : ViewModel() {
         _selectedFilter.value = "Todos"
         loadCandidatos()
     }
+
+    private val _selectedRegion = MutableStateFlow("Todas")
+    val selectedRegion: StateFlow<String> = _selectedRegion.asStateFlow()
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
+
+    fun updateRegion(region: String) {
+        _selectedRegion.value = region
+        applyAllFilters()
+    }
+
+    fun getRegiones(): List<String> {
+        return repository.getRegiones()
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            delay(1000)
+            loadCandidatos()
+            _isRefreshing.value = false
+        }
+    }
+
+    private fun applyAllFilters() {
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+
+            try {
+                delay(200)
+
+                var filtered = repository.getCandidatos()
+
+                if (_selectedFilter.value != "Todos") {
+                    filtered = filtered.filter {
+                        it.cargo.contains(_selectedFilter.value, ignoreCase = true)
+                    }
+                }
+
+                if (_selectedRegion.value != "Todas") {
+                    filtered = filtered.filter {
+                        it.lugarNacimiento.contains(_selectedRegion.value, ignoreCase = true) ||
+                                it.cargo.contains(_selectedRegion.value, ignoreCase = true)
+                    }
+                }
+
+                if (_searchQuery.value.isNotBlank()) {
+                    filtered = filtered.filter { candidato ->
+                        candidato.nombreCompleto.contains(_searchQuery.value, ignoreCase = true) ||
+                                candidato.partidoPolitico.contains(_searchQuery.value, ignoreCase = true)
+                    }
+                }
+
+                if (filtered.isEmpty()) {
+                    _uiState.value = UiState.Empty
+                } else {
+                    _uiState.value = UiState.Success(filtered)
+                }
+            } catch (e: Exception) {
+                _uiState.value = UiState.Error(e.message ?: "Error al filtrar")
+            }
+        }
+    }
 }

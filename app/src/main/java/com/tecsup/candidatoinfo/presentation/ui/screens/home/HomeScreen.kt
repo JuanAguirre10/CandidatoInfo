@@ -3,9 +3,10 @@ package com.tecsup.candidatoinfo.presentation.ui.screens.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Compare
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,21 +18,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.tecsup.candidatoinfo.core.util.UiState
 import com.tecsup.candidatoinfo.presentation.ui.components.*
 import com.tecsup.candidatoinfo.presentation.ui.theme.*
+import com.tecsup.candidatoinfo.presentation.viewmodel.CompareViewModel
 import com.tecsup.candidatoinfo.presentation.viewmodel.HomeViewModel
+import androidx.compose.runtime.remember
+import androidx.compose.material.icons.filled.Help
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import com.tecsup.candidatoinfo.presentation.ui.components.HelpDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navController: NavController,
+    compareViewModel: CompareViewModel,
     viewModel: HomeViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val selectedFilter by viewModel.selectedFilter.collectAsState()
+    val selectedRegion by viewModel.selectedRegion.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
+    val selectedCandidatos by remember { compareViewModel.selectedCandidatos }
+    val regiones = viewModel.getRegiones()
+    var showHelpDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -49,10 +64,37 @@ fun HomeScreen(
                         )
                     }
                 },
+                actions = {
+                    IconButton(onClick = { showHelpDialog = true }) {
+                        Icon(
+                            imageVector = Icons.Default.Help,
+                            contentDescription = "Ayuda",
+                            tint = Blue600
+                        )
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = White
                 )
             )
+        },
+        floatingActionButton = {
+            if (selectedCandidatos.size >= 2) {
+                ExtendedFloatingActionButton(
+                    text = { Text("Comparar (${selectedCandidatos.size})") },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Compare,
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        navController.navigate("compare")
+                    },
+                    containerColor = Blue600,
+                    contentColor = White
+                )
+            }
         }
     ) { paddingValues ->
         Column(
@@ -93,18 +135,36 @@ fun HomeScreen(
                         )
                     }
                 )
-                FilterChipCustom(
-                    label = "Lima",
-                    selected = false,
-                    onClick = { /* Implementar filtro por región */ }
-                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(regiones.size) { index ->
+                    val region = regiones[index]
+                    FilterChipCustom(
+                        label = region,
+                        selected = selectedRegion == region,
+                        onClick = { viewModel.updateRegion(region) },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = Green600,
+                            selectedLabelColor = White,
+                            containerColor = White,
+                            labelColor = Gray700
+                        )
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             when (uiState) {
-                is UiState.Idle -> {
-                }
+                is UiState.Idle -> {}
 
                 is UiState.Loading -> {
                     LoadingIndicator(message = "Cargando candidatos...")
@@ -113,17 +173,36 @@ fun HomeScreen(
                 is UiState.Success -> {
                     val candidatos = (uiState as UiState.Success).data
 
-                    LazyColumn(
-                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    SwipeRefresh(
+                        state = rememberSwipeRefreshState(isRefreshing),
+                        onRefresh = { viewModel.refresh() }
                     ) {
-                        items(candidatos) { candidato ->
-                            CandidatoCard(
-                                candidato = candidato,
-                                onClick = {
-                                    navController.navigate("detail/${candidato.id}")
-                                }
-                            )
+                        val isCompareMode = selectedCandidatos.isNotEmpty()
+
+                        LazyColumn(
+                            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            items(candidatos.size) { index ->
+                                val candidato = candidatos[index]
+                                val isSelected = compareViewModel.isSelected(candidato.id)
+
+                                CandidatoCard(
+                                    candidato = candidato,
+                                    onClick = {
+                                        if (isCompareMode) {
+                                            compareViewModel.toggleCandidato(candidato)
+                                        } else {
+                                            navController.navigate("detail/${candidato.id}")
+                                        }
+                                    },
+                                    onDoubleClick = {
+                                        compareViewModel.toggleCandidato(candidato)
+                                    },
+                                    isSelected = isSelected,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
                         }
                     }
                 }
@@ -147,6 +226,9 @@ fun HomeScreen(
                 }
             }
         }
+    }
+    if (showHelpDialog) {
+        HelpDialog(onDismiss = { showHelpDialog = false })
     }
 }
 
@@ -175,10 +257,11 @@ fun SearchBarComponent(
             focusedContainerColor = White,
             unfocusedContainerColor = White,
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
         ),
         singleLine = true
     )
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -187,18 +270,20 @@ fun FilterChipCustom(
     label: String,
     selected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    colors: SelectableChipColors = FilterChipDefaults.filterChipColors(
+        selectedContainerColor = Blue600,
+        selectedLabelColor = White,
+        containerColor = White,
+        labelColor = Gray700
+    )
 ) {
     FilterChip(
         selected = selected,
         onClick = onClick,
         label = { Text(label) },
         modifier = modifier,
-        colors = FilterChipDefaults.filterChipColors(
-            selectedContainerColor = Blue600,
-            selectedLabelColor = White,
-            containerColor = White,
-            labelColor = Gray700
-        )
+        colors = colors
     )
+
 }

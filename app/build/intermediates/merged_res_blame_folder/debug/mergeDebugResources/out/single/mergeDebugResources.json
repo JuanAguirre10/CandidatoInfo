@@ -44,6 +44,10 @@
         "source": "com.tecsup.candidatoinfo.app-main-6:/xml/backup_rules.xml"
     },
     {
+        "merged": "com.tecsup.candidatoinfo.app-debug-4:/drawable_candidatoinfo.png.flat",
+        "source": "com.tecsup.candidatoinfo.app-main-6:/drawable/candidatoinfo.png"
+    },
+    {
         "merged": "com.tecsup.candidatoinfo.app-debug-4:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "com.tecsup.candidatoinfo.app-main-6:/mipmap-xhdpi/ic_launcher.webp"
     },
@@ -56,8 +60,16 @@
         "source": "com.tecsup.candidatoinfo.app-main-6:/xml/data_extraction_rules.xml"
     },
     {
+        "merged": "com.tecsup.candidatoinfo.app-debug-4:/drawable_candidatoinfosinfodno.png.flat",
+        "source": "com.tecsup.candidatoinfo.app-main-6:/drawable/candidatoinfosinfodno.png"
+    },
+    {
         "merged": "com.tecsup.candidatoinfo.app-debug-4:/mipmap-mdpi_ic_launcher_round.webp.flat",
         "source": "com.tecsup.candidatoinfo.app-main-6:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.tecsup.candidatoinfo.app-debug-4:/raw_peru_flag.json.flat",
+        "source": "com.tecsup.candidatoinfo.app-main-6:/raw/peru_flag.json"
     },
     {
         "merged": "com.tecsup.candidatoinfo.app-debug-4:/mipmap-hdpi_ic_launcher_round.webp.flat",

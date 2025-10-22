@@ -48,7 +48,7 @@ object MockDataSource {
             cargo = "Presidente - Nacional",
             fotoUrl = "https://via.placeholder.com/300/F38181/FFFFFF?text=CA",
             edad = 68,
-            lugarNacimiento = "Trujillo, La Libertad",
+            lugarNacimiento = "Trujillo",
             profesion = "Empresario Educativo",
             numeroDenuncias = 3,
             numeroProyectos = 67
@@ -100,6 +100,90 @@ object MockDataSource {
             profesion = "Ingeniero Civil - UNI",
             numeroDenuncias = 2,
             numeroProyectos = 89
+        ),
+        Candidato(
+            id = "9",
+            nombreCompleto = "Verónika Mendoza Frisch",
+            partidoPolitico = "Juntos por el Perú",
+            cargo = "Congresista - Cusco",
+            fotoUrl = "https://via.placeholder.com/300/FFB6C1/FFFFFF?text=VM",
+            edad = 44,
+            lugarNacimiento = "Cusco",
+            profesion = "Psicóloga - UNSAAC",
+            numeroDenuncias = 0,
+            numeroProyectos = 28
+        ),
+        Candidato(
+            id = "10",
+            nombreCompleto = "Daniel Urresti Elera",
+            partidoPolitico = "Podemos Perú",
+            cargo = "Congresista - Lima",
+            fotoUrl = "https://via.placeholder.com/300/87CEEB/FFFFFF?text=DU",
+            edad = 63,
+            lugarNacimiento = "Lima",
+            profesion = "General EP - COEDE",
+            numeroDenuncias = 2,
+            numeroProyectos = 18
+        ),
+        Candidato(
+            id = "11",
+            nombreCompleto = "Julio Guzmán Cáceres",
+            partidoPolitico = "Partido Morado",
+            cargo = "Congresista - Lima",
+            fotoUrl = "https://via.placeholder.com/300/9370DB/FFFFFF?text=JG",
+            edad = 54,
+            lugarNacimiento = "Lima",
+            profesion = "Economista - PUCP",
+            numeroDenuncias = 0,
+            numeroProyectos = 22
+        ),
+        Candidato(
+            id = "12",
+            nombreCompleto = "Yonhy Lescano Ancieta",
+            partidoPolitico = "Acción Popular",
+            cargo = "Congresista - Cusco",
+            fotoUrl = "https://via.placeholder.com/300/FFD700/333333?text=YL",
+            edad = 67,
+            lugarNacimiento = "Cusco",
+            profesion = "Abogado - UNSAAC",
+            numeroDenuncias = 1,
+            numeroProyectos = 56
+        ),
+        Candidato(
+            id = "13",
+            nombreCompleto = "Patricia Chirinos Venegas",
+            partidoPolitico = "Avanza País",
+            cargo = "Congresista - Arequipa",
+            fotoUrl = "https://via.placeholder.com/300/FF69B4/FFFFFF?text=PC",
+            edad = 52,
+            lugarNacimiento = "Arequipa",
+            profesion = "Empresaria - UNSA",
+            numeroDenuncias = 0,
+            numeroProyectos = 14
+        ),
+        Candidato(
+            id = "14",
+            nombreCompleto = "Roberto Sánchez Palomino",
+            partidoPolitico = "Alianza Nacional",
+            cargo = "Congresista - Lima",
+            fotoUrl = "https://via.placeholder.com/300/20B2AA/FFFFFF?text=RS",
+            edad = 58,
+            lugarNacimiento = "Lima",
+            profesion = "Ingeniero Industrial - UNI",
+            numeroDenuncias = 0,
+            numeroProyectos = 9
+        ),
+        Candidato(
+            id = "15",
+            nombreCompleto = "María Elena Foronda Farro",
+            partidoPolitico = "Frente Popular",
+            cargo = "Congresista - Arequipa",
+            fotoUrl = "https://via.placeholder.com/300/DA70D6/FFFFFF?text=MF",
+            edad = 49,
+            lugarNacimiento = "Arequipa",
+            profesion = "Economista - UNSA",
+            numeroDenuncias = 0,
+            numeroProyectos = 11
         )
     )
 
@@ -194,6 +278,45 @@ object MockDataSource {
             entidadInvestigadora = "Fiscalía Especializada en Corrupción",
             linkFuenteOficial = "https://www.fiscalia.gob.pe/",
             gravedad = GravedadDenuncia.ALTA
+        ),
+        Denuncia(
+            id = "D8",
+            candidatoId = "10",
+            titulo = "Caso Hugo Bustíos - Homicidio",
+            descripcion = "Proceso judicial por homicidio del periodista Hugo Bustíos en 1988 durante operativo militar en Ayacucho. Caso emblemático de violaciones de derechos humanos.",
+            tipo = "Penal",
+            estado = "En proceso",
+            fechaDenuncia = "15-11-2007",
+            fechaResolucion = null,
+            entidadInvestigadora = "Poder Judicial",
+            linkFuenteOficial = "https://www.pj.gob.pe/",
+            gravedad = GravedadDenuncia.ALTA
+        ),
+        Denuncia(
+            id = "D9",
+            candidatoId = "10",
+            titulo = "Denuncia por agresión",
+            descripcion = "Denuncia por presunta agresión física durante altercado en sede partidaria. Caso archivado por falta de pruebas suficientes.",
+            tipo = "Penal",
+            estado = "Archivada",
+            fechaDenuncia = "20-05-2018",
+            fechaResolucion = "10-12-2018",
+            entidadInvestigadora = "Fiscalía Provincial",
+            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            gravedad = GravedadDenuncia.BAJA
+        ),
+        Denuncia(
+            id = "D10",
+            candidatoId = "12",
+            titulo = "Denuncia por acoso político",
+            descripcion = "Denuncia por presunto acoso político a excandidata regional. Caso en etapa de investigación preliminar por la Fiscalía.",
+            tipo = "Penal",
+            estado = "En investigación",
+            fechaDenuncia = "08-03-2022",
+            fechaResolucion = null,
+            entidadInvestigadora = "Fiscalía Provincial Cusco",
+            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            gravedad = GravedadDenuncia.MEDIA
         )
     )
 
