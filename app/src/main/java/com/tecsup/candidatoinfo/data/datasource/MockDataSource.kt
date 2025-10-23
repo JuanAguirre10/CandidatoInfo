@@ -1,5 +1,6 @@
 package com.tecsup.candidatoinfo.data.datasource
 
+import com.tecsup.candidatoinfo.R
 import com.tecsup.candidatoinfo.data.model.Candidato
 
 object MockDataSource {
@@ -10,7 +11,7 @@ object MockDataSource {
             nombreCompleto = "Dina Boluarte Zegarra",
             partidoPolitico = "Independiente",
             cargo = "Presidenta del Perú",
-            fotoResId = 0,
+            fotoResId = R.drawable.dina, // 👈 imagen en drawable
             edad = 61,
             lugarNacimiento = "Apurímac, Perú",
             profesion = "Abogada",
@@ -22,7 +23,7 @@ object MockDataSource {
             nombreCompleto = "Keiko Fujimori Higuchi",
             partidoPolitico = "Fuerza Popular",
             cargo = "Líder del partido Fuerza Popular",
-            fotoResId = 0,
+            fotoResId = R.drawable.keiko, // 👈 imagen en drawable
             edad = 49,
             lugarNacimiento = "Lima, Perú",
             profesion = "Economista",
@@ -34,7 +35,7 @@ object MockDataSource {
             nombreCompleto = "Verónica Mendoza Frisch",
             partidoPolitico = "Nuevo Perú",
             cargo = "Líder del movimiento progresista Nuevo Perú",
-            fotoResId = 0,
+            fotoResId = R.drawable.veronica, // 👈 imagen en drawable
             edad = 44,
             lugarNacimiento = "Cusco, Perú",
             profesion = "Psicóloga",
