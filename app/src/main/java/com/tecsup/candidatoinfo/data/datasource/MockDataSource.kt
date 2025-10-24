@@ -413,6 +413,10 @@ object MockDataSource {
         )
     )
 
+
+
+
+
     fun getDenunciasByCandidato(candidatoId: String) =
         denuncias.filter { it.candidatoId == candidatoId }
 

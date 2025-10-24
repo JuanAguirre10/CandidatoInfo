@@ -44,7 +44,7 @@ fun DetailScreen(
     val propuestasState by viewModel.propuestasState.collectAsState()
     val selectedTab by viewModel.selectedTab.collectAsState()
 
-    val tabs = listOf("proyectos", "Denuncias")
+    val tabs = listOf("Proyectos", "Denuncias","Propuestas")
 
     LaunchedEffect(candidatoId) {
         viewModel.loadCandidatoData(candidatoId)
