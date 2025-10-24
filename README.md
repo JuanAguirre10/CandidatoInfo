@@ -99,20 +99,6 @@ Aplicación móvil Android nativa para consultar información verificada sobre c
 - ✅ **Bordes redondeados** (12dp) para aspecto moderno
 - ✅ **Accesibilidad**: Contraste suficiente, tamaños de texto legibles
 
-## 📱 Capturas de Pantalla
-
-<table>
-  <tr>
-    <td><img src="screenshots/home.png" width="250"/><br/><b>Pantalla Principal</b><br/>Lista de candidatos con búsqueda y filtros</td>
-    <td><img src="screenshots/detail.png" width="250"/><br/><b>Detalle del Candidato</b><br/>Información completa con tabs</td>
-    <td><img src="screenshots/projects.png" width="250"/><br/><b>Propuestas</b><br/>Proyectos legislativos categorizados</td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/compare_mode.png" width="250"/><br/><b>Modo Selección</b><br/>Seleccionar candidatos para comparar</td>
-    <td><img src="screenshots/compare.png" width="250"/><br/><b>Comparador</b><br/>Comparación visual con gráficos</td>
-    <td><b>Características:</b><br/>• Búsqueda instantánea<br/>• Filtros múltiples<br/>• Pull to refresh<br/>• Material Design 3</td>
-  </tr>
-</table>
 
 ## 🏗️ Arquitectura
 
