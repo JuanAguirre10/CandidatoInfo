@@ -10,7 +10,7 @@ object MockDataSource {
             nombreCompleto = "Keiko Sofía Fujimori Higuchi",
             partidoPolitico = "Fuerza Popular",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/FF6B6B/FFFFFF?text=KF",
+            fotoUrl = "https://e-an.americatv.com.pe/actualidad-81-peruanos-desaprueba-gestion-keiko-fujimori-segun-pulso-peru-n333699-938x528-494125.jpg",
             edad = 49,
             lugarNacimiento = "Lima",
             profesion = "Administración - Boston University",
@@ -22,7 +22,7 @@ object MockDataSource {
             nombreCompleto = "Rafael Bernardo López Aliaga Cazorla",
             partidoPolitico = "Renovación Popular",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/4ECDC4/FFFFFF?text=RLA",
+            fotoUrl = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSqoO3rxjNemlUGvhSspSrjF6I00wjMK_BfE4iWACs_4glisijhuxxFbknC-ZxFgf6RRUtGaggc-OD9YaApkNS6hjsDFuES3OlFmZ1gkA",
             edad = 60,
             lugarNacimiento = "Lima",
             profesion = "Ingeniero Industrial - Universidad de Lima",
@@ -34,7 +34,7 @@ object MockDataSource {
             nombreCompleto = "George Patrick Forsyth Sommer",
             partidoPolitico = "Somos Perú",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/95E1D3/FFFFFF?text=GF",
+            fotoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFfpGiEvdiwF6-yi44ML82BSqGTYupyTUDug&s",
             edad = 39,
             lugarNacimiento = "Lima",
             profesion = "Futbolista Profesional",
@@ -46,7 +46,7 @@ object MockDataSource {
             nombreCompleto = "César Acuña Peralta",
             partidoPolitico = "Alianza Para el Progreso",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/F38181/FFFFFF?text=CA",
+            fotoUrl = "https://portal.andina.pe/EDPMedia/Fotografia/2021/02/09/00000049-candidato-cesar-acuna-cover.jpg",
             edad = 68,
             lugarNacimiento = "Trujillo",
             profesion = "Empresario Educativo",
@@ -58,7 +58,7 @@ object MockDataSource {
             nombreCompleto = "Hernando de Soto Polar",
             partidoPolitico = "Progresemos",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/AA96DA/FFFFFF?text=HS",
+            fotoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkoWRRxMKU02dI7s8MxDDFAQb7EAg6doLoEA&s",
             edad = 83,
             lugarNacimiento = "Arequipa",
             profesion = "Economista - Universidad de Ginebra",
@@ -70,7 +70,7 @@ object MockDataSource {
             nombreCompleto = "Alfonso López Chau Nam",
             partidoPolitico = "Ahora Nación",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/FCBAD3/FFFFFF?text=ALC",
+            fotoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7naV15EphvbEJHhay6EkTXwqtMU7JgFvW3Q&s",
             edad = 65,
             lugarNacimiento = "Lima",
             profesion = "Ingeniero - UNI",
@@ -82,7 +82,7 @@ object MockDataSource {
             nombreCompleto = "Marisol Soledad Pérez Tello",
             partidoPolitico = "Primero la Gente",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/FFFFD2/333333?text=MPT",
+            fotoUrl = "https://www.radionacional.gob.pe/sites/default/files/noticias/marisol%20perez%20tello_2.jpg",
             edad = 56,
             lugarNacimiento = "Lima",
             profesion = "Abogada - PUCP",
@@ -94,7 +94,7 @@ object MockDataSource {
             nombreCompleto = "Martín Alberto Vizcarra Cornejo",
             partidoPolitico = "Perú Primero",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/A8E6CF/FFFFFF?text=MV",
+            fotoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7txmdpP06-FTC1PUM4w0qZrg4mjjoxJDusA&s",
             edad = 61,
             lugarNacimiento = "Lima",
             profesion = "Ingeniero Civil - UNI",
@@ -106,7 +106,7 @@ object MockDataSource {
             nombreCompleto = "Verónika Mendoza Frisch",
             partidoPolitico = "Juntos por el Perú",
             cargo = "Congresista - Cusco",
-            fotoUrl = "https://via.placeholder.com/300/FFB6C1/FFFFFF?text=VM",
+            fotoUrl = "https://radiosanmartin.pe/wp-content/uploads/2020/10/veronica-mp.jpg",
             edad = 44,
             lugarNacimiento = "Cusco",
             profesion = "Psicóloga - UNSAAC",
@@ -118,7 +118,7 @@ object MockDataSource {
             nombreCompleto = "Daniel Urresti Elera",
             partidoPolitico = "Podemos Perú",
             cargo = "Congresista - Lima",
-            fotoUrl = "https://via.placeholder.com/300/87CEEB/FFFFFF?text=DU",
+            fotoUrl = "https://www.larepublica.ec/wp-content/uploads/2014/07/Daniel-Urresti.jpg",
             edad = 63,
             lugarNacimiento = "Lima",
             profesion = "General EP - COEDE",
@@ -130,7 +130,7 @@ object MockDataSource {
             nombreCompleto = "Julio Guzmán Cáceres",
             partidoPolitico = "Partido Morado",
             cargo = "Congresista - Lima",
-            fotoUrl = "https://via.placeholder.com/300/9370DB/FFFFFF?text=JG",
+            fotoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJyz1mQlX8YgotIAlQjrHseKuZDTN_evJ7eg&s",
             edad = 54,
             lugarNacimiento = "Lima",
             profesion = "Economista - PUCP",
@@ -142,7 +142,7 @@ object MockDataSource {
             nombreCompleto = "Yonhy Lescano Ancieta",
             partidoPolitico = "Acción Popular",
             cargo = "Congresista - Cusco",
-            fotoUrl = "https://via.placeholder.com/300/FFD700/333333?text=YL",
+            fotoUrl = "https://portal.andina.pe/EDPMedia/Fotografia/2021/02/04/00000050-candidato-yohny-lescano-cover.jpg",
             edad = 67,
             lugarNacimiento = "Cusco",
             profesion = "Abogado - UNSAAC",
@@ -154,7 +154,7 @@ object MockDataSource {
             nombreCompleto = "Patricia Chirinos Venegas",
             partidoPolitico = "Avanza País",
             cargo = "Congresista - Arequipa",
-            fotoUrl = "https://via.placeholder.com/300/FF69B4/FFFFFF?text=PC",
+            fotoUrl = "https://comunicaciones.congreso.gob.pe/wpuploads/2023/10/51340115585_0d0632ffbd_k-1.jpg",
             edad = 52,
             lugarNacimiento = "Arequipa",
             profesion = "Empresaria - UNSA",
@@ -166,7 +166,7 @@ object MockDataSource {
             nombreCompleto = "Roberto Sánchez Palomino",
             partidoPolitico = "Alianza Nacional",
             cargo = "Congresista - Lima",
-            fotoUrl = "https://via.placeholder.com/300/20B2AA/FFFFFF?text=RS",
+            fotoUrl = "https://ahoradigital.net/wp-content/uploads/2022/11/Roberto-Sanchez-Palomino-1.jpeg",
             edad = 58,
             lugarNacimiento = "Lima",
             profesion = "Ingeniero Industrial - UNI",
@@ -178,7 +178,7 @@ object MockDataSource {
             nombreCompleto = "María Elena Foronda Farro",
             partidoPolitico = "Frente Popular",
             cargo = "Congresista - Arequipa",
-            fotoUrl = "https://via.placeholder.com/300/DA70D6/FFFFFF?text=MF",
+            fotoUrl = "https://www.revistaideele.com/wp-content/uploads/2020/10/foronda-el-comercio.jpeg                        ",
             edad = 49,
             lugarNacimiento = "Arequipa",
             profesion = "Economista - UNSA",
@@ -198,7 +198,7 @@ object MockDataSource {
             fechaDenuncia = "26-10-2018",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Especializada en Lavado de Activos",
-            linkFuenteOficial = "https://www.pj.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/mpfn/noticias/332603-caso-odebrecht-equipo-especial-del-ministerio-publico-detecto-56-empresas-off-shore-en-diversos-paises?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -211,7 +211,7 @@ object MockDataSource {
             fechaDenuncia = "15-06-2021",
             fechaResolucion = null,
             entidadInvestigadora = "Contraloría General",
-            linkFuenteOficial = "https://www.contraloria.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/contraloria/noticias/1268784-contraloria-detecto-contratacion-irregular-de-personal-asistencial-y-administrativo-en-hospital-regional-de-ica",
             gravedad = GravedadDenuncia.MEDIA
         ),
         Denuncia(
@@ -224,7 +224,7 @@ object MockDataSource {
             fechaDenuncia = "10-03-2015",
             fechaResolucion = "15-07-2015",
             entidadInvestigadora = "Universidad Complutense / SUNEDU",
-            linkFuenteOficial = "https://www.sunedu.gob.pe/",
+            linkFuenteOficial = "https://canaln.pe/actualidad/cesar-acuna-universidad-complutense-madrid-investiga-plagio-su-tesis-doctoral-n216667?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.MEDIA
         ),
         Denuncia(
@@ -237,7 +237,7 @@ object MockDataSource {
             fechaDenuncia = "22-08-2019",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Anticorrupción La Libertad",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/mpfn/noticias/1231073-fiscalia-anticorrupcion-de-la-libertad-incauta-documentos-sobre-licitacion-de-obra-del-hospital-santa-isabel-a-favor-de-grupo-pergola?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -250,7 +250,7 @@ object MockDataSource {
             fechaDenuncia = "05-09-2020",
             fechaResolucion = "12-03-2021",
             entidadInvestigadora = "Fiscalía de la Nación",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/mpfn/noticias/595058-fiscalia-de-la-nacion-sustento-denuncia-constitucional-contra-expresidente-martin-vizcarra-cornejo-por-el-caso-richard-cisneros?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.BAJA
         ),
         Denuncia(
@@ -263,7 +263,7 @@ object MockDataSource {
             fechaDenuncia = "10-02-2021",
             fechaResolucion = "23-09-2021",
             entidadInvestigadora = "Congreso de la República",
-            linkFuenteOficial = "https://www.congreso.gob.pe/",
+            linkFuenteOficial = "https://saludconlupa.com/noticias/vacunagate-expresidente-vizcarra-fue-inhabilitado-por-diez-anos-de-ejercer-cargos-publicos/?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -276,7 +276,7 @@ object MockDataSource {
             fechaDenuncia = "18-07-2019",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Especializada en Corrupción",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/contraloria/noticias/687564-perjuicio-de-s-557-mil-por-irregular-adquisicion-de-equipos-para-proyecto-lomas-de-ilo?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -289,7 +289,7 @@ object MockDataSource {
             fechaDenuncia = "15-11-2007",
             fechaResolucion = null,
             entidadInvestigadora = "Poder Judicial",
-            linkFuenteOficial = "https://www.pj.gob.pe/",
+            linkFuenteOficial = "https://andina.pe/agencia/noticia-poder-judicial-sentencia-a-daniel-urresti-a-12-anos-prision-crimen-hugo-bustios-936386.aspx",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -302,7 +302,7 @@ object MockDataSource {
             fechaDenuncia = "20-05-2018",
             fechaResolucion = "10-12-2018",
             entidadInvestigadora = "Fiscalía Provincial",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://comisedh.org.pe/blog/2021/12/28/se-apelara-archivamiento-de-denuncia/?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.BAJA
         ),
         Denuncia(
@@ -315,7 +315,7 @@ object MockDataSource {
             fechaDenuncia = "08-03-2022",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Provincial Cusco",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://rpp.pe/politica/congreso/yonhy-lescano-fiscalia-abrio-investigacion-contra-los-que-resulten-responsables-del-presunto-acoso-sexual-a-periodista-noticia-1183882?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.MEDIA
         )
     )
@@ -329,7 +329,7 @@ object MockDataSource {
             categoria = "Economía",
             fechaPresentacion = "15-03-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://andina.pe/agencia/noticia-cuna-mas-incrementa-130-numero-beneficiarios-del-programa-social-1037227.aspx"
         ),
         Propuesta(
             id = "P2",
@@ -339,7 +339,7 @@ object MockDataSource {
             categoria = "Social",
             fechaPresentacion = "22-04-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.radionacional.gob.pe/noticias/locales/presupuesto-2024-asignado-a-programa-cuna-mas-permitira-ampliacion-de-cobertura"
         ),
         Propuesta(
             id = "P3",
@@ -349,7 +349,7 @@ object MockDataSource {
             categoria = "Infraestructura",
             fechaPresentacion = "10-02-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/munilima/noticias/1190407-alcalde-de-lima-logra-historica-donancion-de-trenes-para-transformar-el-transporte-de-lima"
         ),
         Propuesta(
             id = "P4",
@@ -359,7 +359,7 @@ object MockDataSource {
             categoria = "Seguridad",
             fechaPresentacion = "18-03-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/munilima/noticias/1229648-alcalde-de-lima-busca-ponerle-fin-al-terrorismo-urbano"
         ),
         Propuesta(
             id = "P5",
@@ -369,7 +369,7 @@ object MockDataSource {
             categoria = "Vivienda",
             fechaPresentacion = "05-01-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://peru21.pe/politica/cesar-acuna-habria-usado-testaferro-para-adquirir-un-inmueble-de-mas-de-un-millon-de-dolares/"
         ),
         Propuesta(
             id = "P6",
@@ -379,7 +379,7 @@ object MockDataSource {
             categoria = "Educación",
             fechaPresentacion = "20-02-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/mtc/noticias/1068182-mtc-puso-en-marcha-internet-de-banda-ancha-en-colegios-de-localidades-rurales-de-la-libertad"
         ),
         Propuesta(
             id = "P7",
@@ -389,7 +389,7 @@ object MockDataSource {
             categoria = "Economía",
             fechaPresentacion = "12-01-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.lincolninst.edu/es/publications/articles/la-influencia-el-misterio-del-capital-hernando-soto/"
         ),
         Propuesta(
             id = "P8",
@@ -399,7 +399,7 @@ object MockDataSource {
             categoria = "Justicia",
             fechaPresentacion = "08-06-2024",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://elperuano.pe/noticia/44282-el-gobierno-promovera-reforma-en-sistema-judicial"
         ),
         Propuesta(
             id = "P9",
@@ -409,7 +409,7 @@ object MockDataSource {
             categoria = "Reforma Política",
             fechaPresentacion = "15-08-2019",
             estado = "Aprobado",
-            linkFuenteOficial = "https://www.congreso.gob.pe/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/presidencia/noticias/19373-presidente-vizcarra-entrego-tres-proyectos-de-reforma-politica-al-congreso-de-la-republica-y-pide-que-se-debatan-con-prioridad"
         )
     )
 
