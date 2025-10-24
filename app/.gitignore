@@ -1,1 +1,28 @@
-/build
+# Android build files
+/build/
+app/build/
+
+# Gradle
+.gradle/
+*.gradle
+gradle/
+*/build/
+
+# Local configuration (NO subir a Git)
+local.properties
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Native builds
+.externalNativeBuild/
+.cxx/
+
+# Output artifacts
+*.apk
+*.dex
