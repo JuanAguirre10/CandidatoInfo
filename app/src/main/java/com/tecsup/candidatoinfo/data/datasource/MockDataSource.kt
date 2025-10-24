@@ -329,7 +329,7 @@ object MockDataSource {
             categoria = "Economía",
             fechaPresentacion = "15-03-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://andina.pe/agencia/noticia-cuna-mas-incrementa-130-numero-beneficiarios-del-programa-social-1037227.aspx"
         ),
         Propuesta(
             id = "P2",
@@ -339,7 +339,7 @@ object MockDataSource {
             categoria = "Social",
             fechaPresentacion = "22-04-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.radionacional.gob.pe/noticias/locales/presupuesto-2024-asignado-a-programa-cuna-mas-permitira-ampliacion-de-cobertura"
         ),
         Propuesta(
             id = "P3",
@@ -349,7 +349,7 @@ object MockDataSource {
             categoria = "Infraestructura",
             fechaPresentacion = "10-02-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/munilima/noticias/1190407-alcalde-de-lima-logra-historica-donancion-de-trenes-para-transformar-el-transporte-de-lima"
         ),
         Propuesta(
             id = "P4",
@@ -359,7 +359,7 @@ object MockDataSource {
             categoria = "Seguridad",
             fechaPresentacion = "18-03-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/munilima/noticias/1229648-alcalde-de-lima-busca-ponerle-fin-al-terrorismo-urbano"
         ),
         Propuesta(
             id = "P5",
@@ -369,7 +369,7 @@ object MockDataSource {
             categoria = "Vivienda",
             fechaPresentacion = "05-01-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://peru21.pe/politica/cesar-acuna-habria-usado-testaferro-para-adquirir-un-inmueble-de-mas-de-un-millon-de-dolares/"
         ),
         Propuesta(
             id = "P6",
@@ -379,7 +379,7 @@ object MockDataSource {
             categoria = "Educación",
             fechaPresentacion = "20-02-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/mtc/noticias/1068182-mtc-puso-en-marcha-internet-de-banda-ancha-en-colegios-de-localidades-rurales-de-la-libertad"
         ),
         Propuesta(
             id = "P7",
@@ -389,7 +389,7 @@ object MockDataSource {
             categoria = "Economía",
             fechaPresentacion = "12-01-2021",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://www.lincolninst.edu/es/publications/articles/la-influencia-el-misterio-del-capital-hernando-soto/"
         ),
         Propuesta(
             id = "P8",
