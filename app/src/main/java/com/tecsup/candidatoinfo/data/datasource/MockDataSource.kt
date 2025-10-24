@@ -399,7 +399,7 @@ object MockDataSource {
             categoria = "Justicia",
             fechaPresentacion = "08-06-2024",
             estado = "Presentado",
-            linkFuenteOficial = "https://portal.jne.gob.pe/planesdegobierno/"
+            linkFuenteOficial = "https://elperuano.pe/noticia/44282-el-gobierno-promovera-reforma-en-sistema-judicial"
         ),
         Propuesta(
             id = "P9",
@@ -409,7 +409,7 @@ object MockDataSource {
             categoria = "Reforma Política",
             fechaPresentacion = "15-08-2019",
             estado = "Aprobado",
-            linkFuenteOficial = "https://www.congreso.gob.pe/"
+            linkFuenteOficial = "https://www.gob.pe/institucion/presidencia/noticias/19373-presidente-vizcarra-entrego-tres-proyectos-de-reforma-politica-al-congreso-de-la-republica-y-pide-que-se-debatan-con-prioridad"
         )
     )
 
