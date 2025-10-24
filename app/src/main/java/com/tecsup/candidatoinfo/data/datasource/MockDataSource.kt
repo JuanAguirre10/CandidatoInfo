@@ -198,7 +198,7 @@ object MockDataSource {
             fechaDenuncia = "26-10-2018",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Especializada en Lavado de Activos",
-            linkFuenteOficial = "https://www.pj.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/mpfn/noticias/332603-caso-odebrecht-equipo-especial-del-ministerio-publico-detecto-56-empresas-off-shore-en-diversos-paises?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -211,7 +211,7 @@ object MockDataSource {
             fechaDenuncia = "15-06-2021",
             fechaResolucion = null,
             entidadInvestigadora = "Contraloría General",
-            linkFuenteOficial = "https://www.contraloria.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/contraloria/noticias/1268784-contraloria-detecto-contratacion-irregular-de-personal-asistencial-y-administrativo-en-hospital-regional-de-ica",
             gravedad = GravedadDenuncia.MEDIA
         ),
         Denuncia(
@@ -224,7 +224,7 @@ object MockDataSource {
             fechaDenuncia = "10-03-2015",
             fechaResolucion = "15-07-2015",
             entidadInvestigadora = "Universidad Complutense / SUNEDU",
-            linkFuenteOficial = "https://www.sunedu.gob.pe/",
+            linkFuenteOficial = "https://canaln.pe/actualidad/cesar-acuna-universidad-complutense-madrid-investiga-plagio-su-tesis-doctoral-n216667?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.MEDIA
         ),
         Denuncia(
@@ -237,7 +237,7 @@ object MockDataSource {
             fechaDenuncia = "22-08-2019",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Anticorrupción La Libertad",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/mpfn/noticias/1231073-fiscalia-anticorrupcion-de-la-libertad-incauta-documentos-sobre-licitacion-de-obra-del-hospital-santa-isabel-a-favor-de-grupo-pergola?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -250,7 +250,7 @@ object MockDataSource {
             fechaDenuncia = "05-09-2020",
             fechaResolucion = "12-03-2021",
             entidadInvestigadora = "Fiscalía de la Nación",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/mpfn/noticias/595058-fiscalia-de-la-nacion-sustento-denuncia-constitucional-contra-expresidente-martin-vizcarra-cornejo-por-el-caso-richard-cisneros?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.BAJA
         ),
         Denuncia(
@@ -263,7 +263,7 @@ object MockDataSource {
             fechaDenuncia = "10-02-2021",
             fechaResolucion = "23-09-2021",
             entidadInvestigadora = "Congreso de la República",
-            linkFuenteOficial = "https://www.congreso.gob.pe/",
+            linkFuenteOficial = "https://saludconlupa.com/noticias/vacunagate-expresidente-vizcarra-fue-inhabilitado-por-diez-anos-de-ejercer-cargos-publicos/?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -276,7 +276,7 @@ object MockDataSource {
             fechaDenuncia = "18-07-2019",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Especializada en Corrupción",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://www.gob.pe/institucion/contraloria/noticias/687564-perjuicio-de-s-557-mil-por-irregular-adquisicion-de-equipos-para-proyecto-lomas-de-ilo?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -289,7 +289,7 @@ object MockDataSource {
             fechaDenuncia = "15-11-2007",
             fechaResolucion = null,
             entidadInvestigadora = "Poder Judicial",
-            linkFuenteOficial = "https://www.pj.gob.pe/",
+            linkFuenteOficial = "https://andina.pe/agencia/noticia-poder-judicial-sentencia-a-daniel-urresti-a-12-anos-prision-crimen-hugo-bustios-936386.aspx",
             gravedad = GravedadDenuncia.ALTA
         ),
         Denuncia(
@@ -302,7 +302,7 @@ object MockDataSource {
             fechaDenuncia = "20-05-2018",
             fechaResolucion = "10-12-2018",
             entidadInvestigadora = "Fiscalía Provincial",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://comisedh.org.pe/blog/2021/12/28/se-apelara-archivamiento-de-denuncia/?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.BAJA
         ),
         Denuncia(
@@ -315,7 +315,7 @@ object MockDataSource {
             fechaDenuncia = "08-03-2022",
             fechaResolucion = null,
             entidadInvestigadora = "Fiscalía Provincial Cusco",
-            linkFuenteOficial = "https://www.fiscalia.gob.pe/",
+            linkFuenteOficial = "https://rpp.pe/politica/congreso/yonhy-lescano-fiscalia-abrio-investigacion-contra-los-que-resulten-responsables-del-presunto-acoso-sexual-a-periodista-noticia-1183882?utm_source=chatgpt.com",
             gravedad = GravedadDenuncia.MEDIA
         )
     )
