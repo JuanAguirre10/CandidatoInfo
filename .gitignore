@@ -1,22 +1,51 @@
-# Gradle
+@"
+# Android
+*.iml
 .gradle/
+local.properties
+/.idea/
+.DS_Store
+/build
+/captures/
+.externalNativeBuild
+.cxx
+output.json
+
+# Android Studio
+.idea/
+*.ipr
+*.iws
+*.bak
+*.swp
+*~.nib
+*.tmp
+
+# Gradle
 build/
 */build/
+.gradle/
 
-# Local configuration
-local.properties
+# Log & cache
+*.log
+.cache/
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
 
-# IntelliJ / Android Studio
-.idea/
-*.iml
-
-# Mac / Windows
-.DS_Store
-
-# NDK / Native
-.externalNativeBuild/
-.cxx/
-
-# Output
+# Others
 *.apk
+*.aab
 *.dex
+*.class
+*.jar
+*.war
+*.ear
+*.hprof
+
+# Generated
+app/release/
+app/debug/
+app/intermediates/
+app/outputs/
+"@ | Out-File -Encoding utf8 .gitignore
