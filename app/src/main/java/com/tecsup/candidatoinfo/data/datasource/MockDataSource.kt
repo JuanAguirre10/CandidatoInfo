@@ -10,7 +10,7 @@ object MockDataSource {
             nombreCompleto = "Keiko Sofía Fujimori Higuchi",
             partidoPolitico = "Fuerza Popular",
             cargo = "Presidente - Nacional",
-            fotoUrl = "https://via.placeholder.com/300/FF6B6B/FFFFFF?text=KF",
+            fotoUrl = "https://upload.wikimedia.org/wikipedia/commons/4/4f/Keiko_Fujimori_2.jpg",
             edad = 49,
             lugarNacimiento = "Lima",
             profesion = "Administración - Boston University",
